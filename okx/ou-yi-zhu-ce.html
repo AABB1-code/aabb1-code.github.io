@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="theme-color" content="#eef2f9">
+<meta name="description" content="VIP专属 · 欧易注册入口与热门币种行情快照。">
+<link rel="icon" href="data:,">
+<title>VIP专属 · 欧易注册</title>
+<style>
+:root{--tx:#1c1c1e;--t2:rgba(60,60,67,.64);--t3:rgba(60,60,67,.42);--ink:#26262b;--ink2:#2e2e34;--gold:#c6a45c;--gold-d:#a88e54;--gold-l:#e8cf8f;--up:#1b9a43;--dn:#d92a1f;--upb:#34c759;--dnb:#ff3b30;--ac:#007aff;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{color:var(--tx);font-family:-apple-system,"SF Pro Display","SF Pro Text","PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;font-size:15px;line-height:1.68;letter-spacing:.012em;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:#eef2f9}
+a{color:inherit;text-decoration:none}
+.m{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.dn{color:var(--dn)}
+:focus-visible{outline:2.5px solid var(--ac);outline-offset:2px}
+/* 背景：近白 + 淡蓝/蜜桃/薄荷/淡紫光晕（与币安版同一套） */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(165deg,#fcfdff 0%,#f1f5fc 48%,#e8eef8 100%)}
+.bg i{position:absolute;border-radius:50%;filter:blur(80px)}
+.bg .o1{width:52vmax;height:52vmax;left:-18vmax;top:-18vmax;background:rgba(140,185,255,.5)}
+.bg .o2{width:38vmax;height:38vmax;right:-12vmax;top:8vmax;background:rgba(255,196,165,.55)}
+.bg .o3{width:40vmax;height:40vmax;left:22vw;bottom:-22vmax;background:rgba(168,240,212,.5)}
+.bg .o4{width:30vmax;height:30vmax;right:18vw;top:52vh;background:rgba(205,190,255,.42)}
+.bg .glow{position:absolute;right:-20vmax;top:-24vmax;width:80vmax;height:80vmax;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1),rgba(255,251,240,.65) 36%,transparent 70%);filter:blur(24px)}
+/* 玻璃基础 */
+.glass{position:relative;background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,255,255,.34));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 0 0 1px rgba(90,110,150,.08),0 24px 60px -20px rgba(60,80,130,.28),0 4px 16px rgba(60,80,130,.07)}
+.glass:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;pointer-events:none;background:linear-gradient(135deg,#fff,rgba(255,255,255,.1) 34%,rgba(255,255,255,.06) 66%,rgba(255,255,255,.85));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.glass>*{position:relative;z-index:1}
+/* 顶栏 */
+header{position:sticky;top:max(10px,env(safe-area-inset-top,0px));z-index:30;max-width:1120px;margin:10px auto 0;padding:0 16px}
+.bar{border-radius:999px;padding:8px 10px 8px 16px;display:flex;align-items:center;gap:6px;min-height:56px}
+.back-link{flex:none;font-size:13px;font-weight:600;color:var(--t2);padding:7px 10px;border-radius:999px;white-space:nowrap;margin-right:2px}
+.back-link:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+@media(max-width:640px){.back-link{font-size:12px;padding:6px 5px;margin-right:0}}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;margin-right:14px;white-space:nowrap;letter-spacing:-.02em}
+.brand img{height:26px;width:auto;border-radius:6px;display:block;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+nav.d{display:flex;align-items:center;gap:2px;flex:1}
+nav.d a,nav.d button{background:none;border:0;color:var(--t2);font:inherit;font-size:14px;font-weight:650;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px}
+nav.d a:hover,nav.d button:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+nav.d a.on{color:var(--tx);background:#fff;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+.more{position:relative}
+.menu{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;border-radius:22px;padding:8px;display:none}
+.more.open .menu{display:block}
+.menu a{display:block;padding:10px 12px;border-radius:14px;font-size:14px;color:var(--tx)}.menu a:hover{background:rgba(255,255,255,.9)}
+.burger{display:none;margin-left:auto;background:rgba(255,255,255,.8);border:0;color:var(--tx);border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+@media(max-width:860px){nav.d{display:none}.burger{display:block}}
+.drawer{position:fixed;inset:0;z-index:40;background:rgba(30,40,70,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none}
+.drawer.open{display:block}
+.drawer>div{position:absolute;right:10px;top:10px;bottom:10px;width:min(320px,86%);border-radius:30px;padding:22px;overflow:auto}
+.drawer h3{font-size:12px;color:var(--t2);letter-spacing:.08em;margin:8px 0}
+.drawer small{color:var(--t2);display:block;margin-bottom:12px}
+.drawer a{display:block;padding:12px;border-radius:14px;font-weight:650}.drawer a:hover{background:rgba(255,255,255,.9)}
+/* 主体 */
+main{max-width:1120px;margin:0 auto;padding:26px 16px 28px}
+.eb{font-size:12.5px;color:#3a3a3c;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(36px,5vw,54px);letter-spacing:-.02em;margin:6px 0 20px;line-height:1.12;font-weight:700}
+.lab{font-size:13px;color:var(--t2);font-weight:700;margin:22px 0 10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 26px;font:inherit;font-weight:700;font-size:15px;color:#f5f2ea;background:linear-gradient(180deg,rgba(62,62,70,.92),rgba(26,26,31,.94));-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);cursor:pointer;box-shadow:0 12px 26px -8px rgba(30,27,18,.42),0 0 0 1px rgba(198,164,92,.38),0 0 16px rgba(198,164,92,.10),inset 0 1.5px 0 rgba(255,255,255,.30),inset 0 0 0 1px rgba(255,255,255,.05);transition:transform .15s,filter .15s;min-height:44px}
+.btn:hover{filter:brightness(1.16);transform:translateY(-1px)}.btn:active{transform:scale(.98)}
+.btn.g{background:rgba(255,255,255,.78);color:var(--tx);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(168,142,84,.30),0 4px 14px rgba(60,80,130,.1)}
+.btn.g:hover{background:#fff;filter:none}
+.btn.s{padding:9px 18px;font-size:13.5px;min-height:38px}
+/* 邀请条 */
+.invite{background:rgba(255,255,255,.62);border-radius:20px;padding:19px 22px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.08)}
+.invite-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex:none;min-width:0}
+.invite-left>.btn{flex-shrink:0}
+.invite-div{flex:none;align-self:stretch;width:1px;background:linear-gradient(180deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+.invite-lines{color:var(--t2);font-size:14px;text-align:left;line-height:1.5;flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:7px}
+.invite-head{font-size:17px;font-weight:700;color:var(--tx);letter-spacing:0}
+.invite-head b{font-family:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;font-size:1.18em;font-weight:700;letter-spacing:.03em;margin:0 .3em;line-height:1.3;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1;background:linear-gradient(115deg,rgba(255,255,255,.30) 0%,rgba(255,255,255,.06) 34%,rgba(255,255,255,0) 52%),linear-gradient(180deg,rgba(23,20,16,.92) 0%,rgba(38,33,26,.92) 52%,rgba(109,85,16,.92) 84%,rgba(193,146,10,.92) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.perk{display:flex;align-items:center;gap:9px;min-width:0}
+.perk-dot{flex:none;width:19px;height:19px;border-radius:50%;background:linear-gradient(180deg,rgba(62,62,70,.94),rgba(28,28,33,.96));color:#f5f2ea;font-size:11.5px;font-weight:900;line-height:1;display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 0 0 1px rgba(198,164,92,.45),0 2px 6px rgba(30,27,18,.28)}
+.perk .hl{font-family:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;font-size:1.3em;font-weight:700;letter-spacing:.03em;line-height:1.3;white-space:nowrap;vertical-align:baseline;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1;background:linear-gradient(180deg,#171410 0%,#26211a 52%,#6d5510 84%,#c1920a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.perk-laurel{width:11px;height:22px;display:inline-block;vertical-align:-5px;margin:0 2px;flex:none}
+.perk-laurel.flip{transform:scaleX(-1)}
+@media(max-width:560px){
+  .invite{padding:16px;gap:12px;flex-direction:column;align-items:stretch}
+  .invite-left{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+  .invite-div{width:auto;height:1px;align-self:auto;background:linear-gradient(90deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+  .invite-lines{font-size:13px;line-height:1.55;gap:8px;width:100%}
+  .invite-head{font-size:15.5px}
+  .invite-head b{font-size:1.18em}
+  .perk{align-items:flex-start;gap:8px;line-height:1.55}
+  .perk-dot{flex:0 0 18px;width:18px;height:18px;font-size:10.5px;margin-top:1px}
+  .perk>span:last-child{flex:1 1 auto;min-width:0;line-height:1.55}
+  .perk .hl{font-size:1.18em;line-height:inherit;vertical-align:baseline;letter-spacing:0}
+  .invite-left>.btn{padding:9px 15px}
+  .invite+.lab{margin-top:30px}
+}
+/* 热门币种（注册区下方通栏横排） */
+.hot{margin-top:20px;border-radius:34px;padding:26px 28px}
+@media(max-width:560px){.hot{padding:20px}}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px;flex-wrap:wrap}
+.hd h2{font-size:20px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;flex-wrap:wrap}
+.live{font-size:12px;color:var(--t2);display:inline-flex;align-items:center;gap:6px;font-weight:650;background:rgba(255,255,255,.7);padding:5px 11px;border-radius:999px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.08)}
+.live:before{content:"";width:8px;height:8px;border-radius:50%;background:#8e8e93;flex:none}
+.live.ok:before{background:#34c759;box-shadow:0 0 6px rgba(52,199,89,.65)}
+.live.delayed:before{background:#ff9500;box-shadow:0 0 6px rgba(255,149,0,.55)}
+.coin .p{transition:background-color .45s ease}
+.coin .p.fu{background:rgba(52,199,89,.20)}
+.coin .p.fd{background:rgba(255,59,48,.16)}
+.hd>a{color:#0062cc;font-size:14px;font-weight:650;padding-top:4px;min-height:32px;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}.coin .meta{font-size:10.5px}.meta-pre{display:none}}
+.coin{border-radius:20px;padding:14px 16px;transition:transform .2s,box-shadow .2s;min-width:0;display:flex;flex-direction:column}
+.coin:hover{transform:translateY(-2px)}
+.coin .t{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;gap:8px;white-space:nowrap}
+.coin .t b{font-size:15px}
+.coin .t span{font-size:12px;font-weight:700;margin-left:auto}
+.coin .p{font-size:16px;font-weight:700;margin:6px 0 4px;letter-spacing:-.02em;border-radius:8px;padding:0 4px;margin-left:-4px;white-space:nowrap}
+.coin .meta{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap;overflow:hidden;margin-bottom:8px}
+.coin svg{width:100%;height:30px;display:block;margin-top:auto}
+/* 信任 + 储备金证明 */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+@media(max-width:760px){.badges{grid-template-columns:1fr}}
+.badge{border-radius:28px;padding:20px;display:flex;gap:14px;align-items:center;font-size:14px;color:var(--t2);line-height:1.6}
+.safu{margin-top:20px;border-radius:34px;padding:32px}
+.safu h2{font-size:25px;margin-bottom:8px;letter-spacing:-.02em}
+.safu p{color:var(--t2);max-width:640px}
+.safu .st{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+@media(max-width:700px){.safu .st{grid-template-columns:1fr}}
+.safu .st div{background:rgba(255,255,255,.6);border-radius:18px;padding:16px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.07)}
+.safu .st b{display:block;font-size:24px;color:#1c1c1e}.safu .st span{font-size:12.5px;color:var(--t2)}
+.safu .src{margin-top:16px;font-size:12.5px;word-break:break-all}
+.safu .src a{color:#0062cc;font-weight:650}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid #fff;box-shadow:0 16px 40px rgba(40,70,130,.22);color:var(--tx);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:650;transition:all .3s;z-index:60;max-width:calc(100% - 40px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+/* 白玻璃贵气面板：强模糊 + 香槟金微光 + 极淡细线 + 金色细边（欧易黑白主色，细节处点金） */
+.royal{border-radius:34px;padding:38px 36px;color:var(--tx);background:radial-gradient(120% 90% at 85% 0%,rgba(198,164,92,.12),transparent 55%),radial-gradient(90% 70% at 8% 100%,rgba(70,64,48,.05),transparent 60%),repeating-linear-gradient(180deg,rgba(60,56,44,.03) 0,rgba(60,56,44,.03) 1px,transparent 1px,transparent 24px),linear-gradient(160deg,rgba(255,255,255,.84),rgba(255,255,255,.54));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(168,142,84,.48);box-shadow:0 24px 60px -20px rgba(60,80,130,.26),0 4px 16px rgba(60,80,130,.07),0 0 46px rgba(198,164,92,.12),inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(198,164,92,.16)}
+@media(max-width:900px){.royal{padding:28px 24px}}
+.royal .eb{color:#3a3a3c;letter-spacing:.34em}
+.royal h1{color:#1c1c1e}
+/* 排名徽章：标题正上方，深墨玻璃底 + 香槟金细边与光晕，跟随标题左对齐 */
+.rank-badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:linear-gradient(180deg,rgba(56,56,64,.92),rgba(24,24,29,.94));-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);color:#f5f2ea;border:1px solid rgba(198,164,92,.6);border-radius:999px;padding:7px 16px;font-size:15px;font-weight:700;letter-spacing:.12em;line-height:1.3;box-shadow:0 10px 22px -8px rgba(30,27,18,.4),0 0 18px rgba(198,164,92,.22),inset 0 1.5px 0 rgba(255,255,255,.3);white-space:nowrap;max-width:100%}
+.rank-badge:before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:linear-gradient(180deg,var(--gold-l),var(--gold));box-shadow:0 0 0 3px rgba(198,164,92,.25),0 0 8px rgba(198,164,92,.6)}
+html[lang="en"] .rank-badge{font-size:13.5px;letter-spacing:.06em}
+@media(max-width:560px){.rank-badge{font-size:13.5px;padding:6px 14px;letter-spacing:.06em}html[lang="en"] .rank-badge{font-size:12px;white-space:normal;text-align:left}}
+.ink-text{background:linear-gradient(168deg,#43434a 0%,#232327 46%,#57492c 72%,#1b1b1f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 数据行：大号数字 + 同行说明（基线对齐），右侧两个月桂徽章 */
+.rstats{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:24px}
+.rbig{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.rbig b{font-size:clamp(46px,6vw,66px);font-weight:800;letter-spacing:-.01em;line-height:1}
+.rbig span{color:#2b2b2b;font-weight:700;font-size:clamp(17px,2.2vw,23px);line-height:1.3;letter-spacing:.03em;white-space:nowrap}
+.rno1s{display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap}
+.rno1{display:flex;align-items:center;gap:4px}
+.rno1-mid{text-align:center}
+.rno1-mid b{display:block;font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.05}
+.rno1-mid span{display:block;color:#3a3a3c;font-size:13px;font-weight:650;letter-spacing:.2em;margin-top:5px}
+.laurel{flex:none}
+/* 邀请条（贵气面板内）：白玻璃 + 香槟金细边与淡金光晕 */
+.royal .invite{background:rgba(255,255,255,.55);border:1px solid rgba(168,142,84,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 26px rgba(198,164,92,.14),0 4px 14px rgba(60,80,130,.06)}
+.royal .invite-head{color:var(--tx)}
+.royal .invite-head b{color:transparent}
+.royal .invite-lines{color:var(--t2)}
+.royal .invite-div{background:linear-gradient(180deg,transparent,rgba(178,150,90,.55) 22%,rgba(178,150,90,.55) 78%,transparent)}
+.royal .lab{color:#3a3a3c}
+.royal .btn.g{background:rgba(255,255,255,.75);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(168,142,84,.5),inset 0 1px 0 rgba(255,255,255,.9),0 4px 14px rgba(60,80,130,.08)}
+.royal .btn.g:hover{background:#fff}
+.royal .invite .btn{background:linear-gradient(180deg,rgba(62,62,70,.92),rgba(26,26,31,.94));color:#f5f2ea;box-shadow:0 12px 26px -8px rgba(30,27,18,.42),0 0 0 1px rgba(198,164,92,.38),inset 0 1.5px 0 rgba(255,255,255,.3)}
+.royal .invite .btn:hover{background:linear-gradient(180deg,rgba(62,62,70,.92),rgba(26,26,31,.94));filter:brightness(1.16)}
+@media(max-width:560px){
+  .royal{padding:26px 20px}
+  .rstats{flex-direction:column;align-items:flex-start;gap:22px}
+  .rno1s{gap:20px}
+  .laurel{width:24px;height:48px}
+  .royal .invite-div{background:linear-gradient(90deg,transparent,rgba(178,150,90,.55) 22%,rgba(178,150,90,.55) 78%,transparent)}
+}
+/* 官方链接区布局：左侧链接/下载，右侧独立换补绑卡片 */
+.links-wrap{display:flex;gap:22px;align-items:stretch}
+.links-main{flex:1 1 auto;min-width:0}
+.links-main .lab:first-child{margin-top:22px}
+/* 换补绑卡片：香槟金细边 + 淡金光晕 + 玻璃通透，独立成块 */
+.rebind{flex:0 0 302px;max-width:340px;margin-top:22px;border:1.5px solid rgba(168,142,84,.72);border-radius:24px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(160deg,rgba(252,250,244,.92),rgba(255,255,255,.78) 62%,rgba(243,238,226,.88));-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);box-shadow:0 0 0 1px rgba(198,164,92,.16),0 0 34px rgba(198,164,92,.20),0 20px 40px -14px rgba(52,45,26,.28),inset 0 1px 0 rgba(255,255,255,.95)}
+.rebind-title{display:flex;align-items:center;gap:9px;font-size:20.5px;font-weight:800;letter-spacing:0;color:#1c1c1e;line-height:1.3}
+.rebind-title svg{flex:none;color:#1c1c1e}
+.rebind p{color:var(--t2);font-size:14px;line-height:1.7;flex:1}
+.rebind p b{color:#1c1c1e;font-weight:700;letter-spacing:.04em}
+.rebind p .rcode{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-weight:800;font-size:1.16em;color:#1c1c1e;letter-spacing:.04em}
+.rebind-code{font-size:14px;font-weight:700;color:var(--tx);line-height:1.5}
+.rebind-code b{font-size:16.5px;font-weight:800;letter-spacing:.08em;color:#1c1c1e}
+.rebind-btn{width:100%;font-size:16.5px;padding:14px 22px;margin-top:4px}
+@media(max-width:860px){
+  .links-wrap{flex-direction:column;gap:0}
+  .rebind{flex:none;max-width:none;width:100%;margin-top:20px}
+}
+@media(max-width:560px){
+  .links-main .lab:first-child{margin-top:30px}
+  .rebind{padding:20px}
+}
+html[lang="en"] .rebind-title{font-size:18.5px}
+html[lang="en"] .rebind p{font-size:13.5px}
+html[lang="en"] .rebind-code{font-size:13.5px}
+/* 语言切换（顶栏右侧，低调分段控件） */
+.lang-label{flex:none;font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap;margin-left:8px;letter-spacing:.02em;line-height:1.2}
+.lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.55);border-radius:999px;padding:3px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.1);flex:none;margin-left:2px}
+.lang-switch button{background:none;border:0;font:inherit;font-size:12.5px;font-weight:650;color:var(--t2);padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px;line-height:1.2}
+.lang-switch button:hover{color:var(--tx)}
+.lang-switch button.on{background:#fff;color:var(--tx);box-shadow:0 2px 8px rgba(60,80,130,.16)}
+.lang-switch .ls-short{display:none}
+@media(max-width:640px){header{padding:0 10px}.bar{padding:8px 8px 8px 10px;gap:3px}.back-link{padding:6px 4px}.brand{font-size:15px;margin-right:2px;gap:6px}.brand img{height:22px}html[lang="en"] .brand{font-size:12.5px;margin-right:2px}.lang-label{font-size:10px;margin-left:0;letter-spacing:0}html[lang="en"] .lang-label{font-size:9px;letter-spacing:0}.lang-switch{margin-left:0;padding:2px}.lang-switch button{padding:5px 5px;font-size:11.5px;min-height:32px}.lang-switch .ls-long{display:none}.lang-switch .ls-short{display:inline}.burger{width:36px;height:36px;font-size:16px;flex:none}}
+/* 英文文案较长时整体收紧，避免溢出/截断 */
+html[lang="en"] h1{font-size:clamp(32px,5vw,50px)}
+html[lang="en"] .brand{font-size:15.5px;margin-right:8px}
+html[lang="en"] nav.d a,html[lang="en"] nav.d button{font-size:13px;padding:8px 9px}
+html[lang="en"] .invite-head{font-size:15.5px;letter-spacing:0}
+html[lang="en"] .invite-lines{font-size:13.5px}
+html[lang="en"] .perk .hl,html[lang="en"] .invite-head b{font-size:1.15em}
+html[lang="en"] .rbig span{white-space:normal}
+html[lang="en"] .rno1-mid span{letter-spacing:.05em}
+html[lang="en"] .btn{padding-left:20px;padding-right:20px;font-size:14px}
+html[lang="en"] .badge{font-size:13px}
+html[lang="en"] .safu .st b{font-size:21px}
+html[lang="en"] .safu h2{font-size:23px}
+@media(max-width:560px){html[lang="en"] .invite-head{font-size:14px}html[lang="en"] .invite-lines{font-size:12.5px}html[lang="en"] .btn{padding-left:16px;padding-right:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i><div class="glow"></div></div>
+<header><div class="bar glass">
+  <a class="back-link" id="backLink" href="https://aabb1-code.github.io/">← 返回选择</a>
+  <a class="brand" href="#"><img id="mark" src="data:image/png;base64,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" alt="OKX" height="26"><span id="brand">VIP专属</span></a>
+  <nav class="d" id="nav" aria-label="站内导航"></nav>
+  <span class="lang-label" id="langLabel">语言</span><div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" data-setlang="zh-CN" aria-label="简体中文"><span class="ls-long">简体中文</span><span class="ls-short">简</span></button><button type="button" data-setlang="zh-TW" aria-label="繁體中文"><span class="ls-long">繁體中文</span><span class="ls-short">繁</span></button><button type="button" data-setlang="en" aria-label="English"><span class="ls-long">English</span><span class="ls-short">EN</span></button></div><button class="burger" id="burger" aria-label="打开导航">☰</button>
+</div></header>
+<div class="drawer" id="drawer"><div class="glass"><h3>NAVIGATION</h3><small id="drawerSub">站内导航</small><div id="dnav"></div></div></div>
+
+<main id="reg">
+  <section class="reg royal">
+    <div>
+      <div class="eb">OKX REGISTER</div>
+      <div><span class="rank-badge" id="rankBadge">全球第二大交易所</span></div>
+      <h1><span class="ink-text" id="h1a">欧易</span><span class="ink-text" id="h1b">注册</span></h1>
+      <div class="rstats" id="rstats"></div>
+      <div class="invite">
+        <div class="invite-left">
+          <div class="invite-head" id="inviteHead">使用邀请码<b id="code">——</b>注册</div>
+          <button class="btn g s" id="copy" type="button">复制</button>
+        </div>
+        <div class="invite-div" aria-hidden="true"></div>
+        <div class="invite-lines">
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk1">1、享有 <b class="hl">永久20%</b> 手续费优惠和返佣　<svg class="perk-laurel" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>全所最高<svg class="perk-laurel flip" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg></span></div>
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk2">2、完成注册任务，可获得 <b class="hl">6,600 USD</b> 新手奖励</span></div>
+        </div>
+      </div>
+      <div class="links-wrap">
+        <div class="links-main">
+          <div class="lab" id="labLinks">官方链接</div>
+          <div class="row"><a class="btn" data-l="register" href="#">注册链接</a></div>
+          <div class="lab" id="labDl">安装下载</div>
+          <div class="row"><a class="btn g" data-l="android" href="#">安卓下载</a><a class="btn g" data-l="ios" href="#">iOS 下载</a></div>
+        </div>
+        <aside class="rebind" aria-labelledby="rebindTitle">
+          <h3 class="rebind-title"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span id="rebindTitle">换、补绑链接</span></h3>
+          <p id="rebindDesc">已注册过欧易账号的用户，点这里换、补绑专属邀请码：<span class="rcode">AABB1</span></p>
+          <a class="btn rebind-btn" id="rebindBtn" href="#">去补绑</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="hot glass">
+    <div class="hd"><h2><span id="hotTitle">热门币种</span> <span class="live" id="live">实时 · 拉取中…</span></h2><a data-l="markets" href="#">查看全部</a></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="badges" id="badges"></section>
+  <section class="safu glass" id="safu"></section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= 只改这一段 =================
+   链接、邀请码、数据声明都在这里（均为董事长提供的真实链接）。 */
+const CONFIG={
+  siteName:"VIP专属",
+  inviteCode:"AABB1",               // 欧易邀请码
+  links:{
+    register:"https://www.mitxcqvwnhj.com/join/AABB1",android:"https://static.okx.com/upgradeapp/godownload.apk",ios:"https://www.okx.com/zh-hans/help/how-to-download-okx-app-on-iphone?shortCode=9hrpE8",
+    markets:"https://www.okx.com/zh-hans/markets/prices"
+  }
+};
+/* 换补绑链接 */
+const REBIND_URL="https://oyidl.co/ul/J6l2R5";
+/* ================= 三语字典（简体为基准） ================= */
+const I18N={
+"zh-CN":{site:"VIP专属",langLabel:"语言",docTitle:"VIP专属 · 欧易注册",desc:"VIP专属 · 欧易注册入口与热门币种行情快照。",h1a:"欧易",h1b:"注册",rankBadge:"全球第二大交易所",
+ stats:[["7000万+","用户的共同选择"],["1:1","储备金证明"],["300+","数字资产"]],
+ nav:[["NEWS",""],["欧易周边",""],["欧易人生",""],["欧易资产",""],["欧易教程",""],["欧易注册","#reg"]],
+ more:[["Agent ID",""],["OKB 销毁",""],["OKB vs BTC",""],["欧易服务",""],["CEX美股对比",""],["文章",""]],
+ badges:["专业可靠的平台，获得超 7,000 万用户信赖","透明可查的储备金，欧易对所有资产持有 1:1 的储备金","便捷轻松的充币流程，充币实时到账，支持 C2C 交易买卖"],
+ reserveTitle:"资产受储备金证明保障",
+ reserveText:"欧易对所有资产持有 1:1 的储备金，并每月发布储备金证明报告。用户可通过 zk-STARK 零知识证明工具，自行验证自己的资产是否被足额计入。",
+ reserveStats:[["$338亿","储备金总价值（第 49 期 · 2026 年 11 月）"],["108%","BTC 储备率"],["49 期","连续发布储备金证明"]],
+ reserveLinePre:"储备金证明报告：",reserveLinePost:"（每月发布新一期）",
+ invitePre:"使用邀请码",invitePost:"注册",copy:"复制",copied:"已复制邀请码：",soon:"该页面即将上线",noLink:"该链接还没有配置",noCode:"邀请码还没有配置",
+ perk1:'1、享有 <b class="hl">永久20%</b> 手续费优惠和返佣　<svg class="perk-laurel" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>全所最高<svg class="perk-laurel flip" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>',perk2:'2、完成注册任务，可获得 <b class="hl">6,600 USD</b> 新手奖励',
+ labLinks:"官方链接",labDl:"安装下载",linkReg:"注册链接",linkAndroid:"安卓下载",linkIos:"iOS 下载",
+ rebindTitle:"换、补绑链接",rebindDesc:'已注册过欧易账号的用户，点这里换、补绑专属邀请码：<span class="rcode">AABB1</span>',rebindBtn:"去补绑",rebindSoon:"补绑链接稍后上线",
+ hot:"热门币种",viewAll:"查看全部",liveLoading:"实时 · 拉取中…",livePre:"实时 · ",justNow:"刚刚更新",secAgo:"秒前更新",delayed:"数据延迟",fetching:"拉取中…",sourcePre:"来源 · ",
+ drawerSub:"站内导航",drawerSite:"站点",drawerMore:"更多",burger:"打开导航",back:"← 返回选择"},
+"zh-TW":{site:"VIP專屬",langLabel:"語言",docTitle:"VIP專屬 · 歐易註冊",desc:"VIP專屬 · 歐易註冊入口與熱門幣種行情快照。",h1a:"歐易",h1b:"註冊",rankBadge:"全球第二大交易所",
+ stats:[["7000萬+","用戶的共同選擇"],["1:1","儲備金證明"],["300+","數字資產"]],
+ nav:[["NEWS",""],["歐易周邊",""],["歐易人生",""],["歐易資產",""],["歐易教程",""],["歐易註冊","#reg"]],
+ more:[["Agent ID",""],["OKB 銷毀",""],["OKB vs BTC",""],["歐易服務",""],["CEX美股對比",""],["文章",""]],
+ badges:["專業可靠的平台，獲得超 7,000 萬用戶信賴","透明可查的儲備金，歐易對所有資產持有 1:1 的儲備金","便捷輕鬆的充幣流程，充幣即時到賬，支持 C2C 交易買賣"],
+ reserveTitle:"資產受儲備金證明保障",
+ reserveText:"歐易對所有資產持有 1:1 的儲備金，並每月發布儲備金證明報告。用戶可透過 zk-STARK 零知識證明工具，自行驗證自己的資產是否被足額計入。",
+ reserveStats:[["$338億","儲備金總價值（第 49 期 · 2026 年 11 月）"],["108%","BTC 儲備率"],["49 期","連續發布儲備金證明"]],
+ reserveLinePre:"儲備金證明報告：",reserveLinePost:"（每月發布新一期）",
+ invitePre:"使用邀請碼",invitePost:"註冊",copy:"複製",copied:"已複製邀請碼：",soon:"該頁面即將上線",noLink:"該連結還沒有配置",noCode:"邀請碼還沒有配置",
+ perk1:'1、享有 <b class="hl">永久20%</b> 手續費優惠和返傭　<svg class="perk-laurel" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>全所最高<svg class="perk-laurel flip" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>',perk2:'2、完成註冊任務，可獲得 <b class="hl">6,600 USD</b> 新手獎勵',
+ labLinks:"官方連結",labDl:"安裝下載",linkReg:"註冊連結",linkAndroid:"安卓下載",linkIos:"iOS 下載",
+ rebindTitle:"換、補綁連結",rebindDesc:'已註冊過歐易帳號的用戶，點這裡換、補綁專屬邀請碼：<span class="rcode">AABB1</span>',rebindBtn:"去補綁",rebindSoon:"補綁連結稍後上線",
+ hot:"熱門幣種",viewAll:"查看全部",liveLoading:"即時 · 拉取中…",livePre:"即時 · ",justNow:"剛剛更新",secAgo:"秒前更新",delayed:"數據延遲",fetching:"拉取中…",sourcePre:"來源 · ",
+ drawerSub:"站內導航",drawerSite:"站點",drawerMore:"更多",burger:"打開導航",back:"← 返回選擇"},
+"en":{site:"VIP Exclusive",langLabel:"Language",docTitle:"VIP Exclusive · OKX Sign-Up",desc:"VIP Exclusive · OKX sign-up portal and a snapshot of popular crypto prices.",h1a:"OKX",h1b:" Sign-Up",rankBadge:"The World's 2nd Largest Exchange",
+ stats:[["70M+","Chosen by users worldwide"],["1:1","Proof of Reserves"],["300+","Digital Assets"]],
+ nav:[["NEWS",""],["OKX Merch",""],["OKX Life",""],["OKX Assets",""],["OKX Tutorials",""],["OKX Sign-Up","#reg"]],
+ more:[["Agent ID",""],["OKB Burn",""],["OKB vs BTC",""],["OKX Services",""],["CEX vs US Stocks",""],["Articles",""]],
+ badges:["A professional, reliable platform trusted by over 70 million users","Transparent, verifiable reserves — OKX holds 1:1 reserves for all assets","Easy deposits that arrive in real time, with C2C trading supported"],
+ reserveTitle:"Assets Backed by Proof of Reserves",
+ reserveText:"OKX holds 1:1 reserves for all user assets and publishes a Proof of Reserves report every month. With zk-STARK zero-knowledge proofs, you can verify for yourself that your assets are fully counted.",
+ reserveStats:[["$33.8B","Total reserve value (Report No. 49 · Nov 2026)"],["108%","BTC reserve ratio"],["49","Reports published in a row"]],
+ reserveLinePre:"Proof of Reserves: ",reserveLinePost:" — a new report every month",
+ invitePre:"Register with invite code ",invitePost:"",copy:"Copy",copied:"Invite code copied: ",soon:"This page is coming soon",noLink:"This link has not been configured yet",noCode:"The invite code has not been configured yet",
+ perk1:'1. Enjoy a <b class="hl">permanent 20%</b> fee discount and rebates　<svg class="perk-laurel" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>the highest across all exchanges<svg class="perk-laurel flip" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(-122 20 8)"/></svg>',perk2:'2. Complete the registration tasks and earn <b class="hl">6,600 USD</b> in new-user rewards',
+ labLinks:"Official Links",labDl:"Get the App",linkReg:"Sign-Up Link",linkAndroid:"Android Download",linkIos:"iOS Download",
+ rebindTitle:"Change / Rebind Link",rebindDesc:'Already have an OKX account? Change or rebind your exclusive invite code here: <span class="rcode">AABB1</span>',rebindBtn:"Rebind Now",rebindSoon:"Rebind link coming soon",
+ hot:"Popular Coins",viewAll:"View All",liveLoading:"Live · Loading…",livePre:"Live · ",justNow:"just now",secAgo:"s ago",delayed:"data delayed",fetching:"Loading…",sourcePre:"Source · ",
+ drawerSub:"Site Navigation",drawerSite:"Site",drawerMore:"More",burger:"Open navigation",back:"← Back"}
+};
+let LANG="zh-CN";
+const T=()=>I18N[LANG];
+const $=id=>document.getElementById(id);
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2200)}
+$("code").textContent=CONFIG.inviteCode||"——";
+// 深色月桂枝（本地 SVG，与币安版同一画法，换欧易黑白）
+function laurel(flip){const leaves=[[25,63,-28],[17,53,-48],[12,41,-68],[11,29,-86],[14,17,-104],[20,8,-122]];
+  return `<svg class="laurel" viewBox="0 0 36 72" width="30" height="60" aria-hidden="true"${flip?' style="transform:scaleX(-1)"':""}><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>${leaves.map(l=>`<ellipse cx="${l[0]}" cy="${l[1]}" rx="3.1" ry="7" fill="#9c8a5e" transform="rotate(${l[2]} ${l[0]} ${l[1]})"/>`).join("")}</svg>`}
+// 数据行：第一个是大号数字 + 同行说明；其余是月桂徽章
+function renderStats(){const st=T().stats;$("rstats").innerHTML=(st.length?`<div class="rbig"><b class="ink-text">${st[0][0]}</b><span>${st[0][1]}</span></div>`:"")
+  +(st.length>1?`<div class="rno1s">${st.slice(1).map(s=>`<div class="rno1">${laurel(false)}<div class="rno1-mid"><b class="ink-text">${s[0]}</b><span>${s[1]}</span></div>${laurel(true)}</div>`).join("")}</div>`:"");
+  $("rstats").style.display=st.length?"":"none"}
+renderStats();
+// 导航（站点 + 更多）
+const nl=(a,cls="")=>`<a ${a[1]&&a[1][0]!=="#"?`href="${a[1]}" target="_blank" rel="noopener"`:`href="${a[1]||"#"}" ${a[1]?"":'data-soon="1"'}`} class="${cls}">${a[0]}</a>`;
+function renderNav(){const t=T();$("nav").innerHTML=t.nav.map(a=>nl(a,a[1]==="#reg"?"on":"")).join("")+`<div class="more" id="more"><button id="mb" aria-haspopup="true">${LANG==="en"?"More":"更多"} ▾</button><div class="menu glass">${t.more.map(a=>nl(a)).join("")}</div></div>`;
+$("dnav").innerHTML=`<h3>${t.drawerSite}</h3>`+t.nav.map(a=>nl(a)).join("")+`<h3>${t.drawerMore}</h3>`+t.more.map(a=>nl(a)).join("")}
+renderNav();
+document.addEventListener("click",e=>{const a=e.target.closest("[data-soon]");if(a){e.preventDefault();toast(T().soon)}
+  const mb=e.target.closest("#mb");$("more").classList.toggle("open",!!mb&&!$("more").classList.contains("open"));
+  if(e.target.closest("#burger"))$("drawer").classList.add("open");else if(!e.target.closest("#dnav")&&e.target.closest("#drawer")||e.target.closest("#dnav a"))$("drawer").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("more").classList.remove("open");$("drawer").classList.remove("open")}});
+// 官方链接
+document.querySelectorAll("[data-l]").forEach(a=>{const u=CONFIG.links[a.dataset.l];
+  if(!u){a.addEventListener("click",e=>{e.preventDefault();toast(T().noLink)});return}
+  a.href=u;a.target="_blank";a.rel="noopener"});
+/* 换补绑按钮：REBIND_URL 为真实链接时新窗口打开；仍为 "#" 占位时只弹提示、不跳转 */
+(function(){const rb=$("rebindBtn");if(!rb)return;
+  if(REBIND_URL&&REBIND_URL!=="#"){rb.href=REBIND_URL;rb.target="_blank";rb.rel="noopener"}
+  else{rb.addEventListener("click",e=>{e.preventDefault();toast(T().rebindSoon)})}})();
+$("copy").onclick=async()=>{const c=CONFIG.inviteCode;if(!c)return toast(T().noCode);try{await navigator.clipboard.writeText(c)}catch(e){const t=document.createElement("textarea");t.value=c;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}toast(T().copied+c)};
+// 荣誉 / 储备金证明
+const AWARD='<svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex:none"><circle cx="24" cy="19" r="11" stroke="#1c1c1e" stroke-width="2.4"/><path d="M24 12.5l1.9 3.9 4.3.6-3.1 3 0.7 4.3L24 22.3l-3.8 2-0.7-4.3-3.1-3 4.3-.6z" fill="#9c8a5e"/><path d="M18.5 27.5L15 40l9-4.6L33 40l-3.5-12.5" stroke="#1c1c1e" stroke-width="2.4" stroke-linejoin="round"/></svg>';
+function renderBadges(){const bs=T().badges;$("badges").innerHTML=bs.map(b=>`<div class="badge glass">${AWARD}<span>${b}</span></div>`).join("");$("badges").style.display=bs.length?"":"none"}
+function renderReserve(){const t=T();$("safu").innerHTML=`<h2>${t.reserveTitle}</h2><p>${t.reserveText}</p><div class="st">${t.reserveStats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div><p class="m src">${t.reserveLinePre}<a href="https://www.okx.com/zh-hans/proof-of-reserves" target="_blank" rel="noopener">www.okx.com/zh-hans/proof-of-reserves</a>${t.reserveLinePost}</p>`}
+renderBadges();renderReserve();
+
+/* ---------- 热门币种：实时行情（OKX 官方公开接口每 5 秒拉一次；不通时顺延 CoinGecko 备用源；走势线用 OKX K 线每 60 秒刷新） ---------- */
+const SYMS=[
+ {s:"BTC",inst:"BTC-USDT",cg:"bitcoin"},
+ {s:"ETH",inst:"ETH-USDT",cg:"ethereum"},
+ {s:"OKB",inst:"OKB-USDT",cg:"okb"},
+ {s:"SOL",inst:"SOL-USDT",cg:"solana"},
+ {s:"XRP",inst:"XRP-USDT",cg:"ripple"}
+];
+const liveData={},sparkData={};
+let lastOkAt=0,srcName="OKX";
+const dp=v=>v>=1000?2:v>=10?2:v>=1?3:v>=.01?5:7,f=v=>"$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:dp(v),maximumFractionDigits:dp(v)}),pc=v=>(v>=0?"+":"")+v.toFixed(2)+"%";
+function priceFontSize(text){const len=text.length;if(len<=9)return 16;if(len<=11)return 14.5;if(len<=13)return 13;return 11.5}
+function sparkPath(a,up){if(!a||a.length<2)return"";const mn=Math.min.apply(null,a),mx=Math.max.apply(null,a),r=mx-mn||1,d=a.map((v,i)=>(i?"L":"M")+(i/(a.length-1)*100).toFixed(1)+" "+(3+(1-(v-mn)/r)*24).toFixed(1)).join("");return`<path d="${d}" fill="none" stroke="${up?"#34c759":"#ff3b30"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`}
+function buildCards(){$("grid").innerHTML=SYMS.map(c=>`<div class="coin glass"><div class="t"><b>${c.s}</b><span class="m" id="pct-${c.s}">—</span></div><div class="p m" id="price-${c.s}">${T().fetching}</div><div class="meta" id="meta-${c.s}"></div><svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" id="spark-${c.s}"></svg></div>`).join("");paintPrices(false);paintSparks();updateStatus()}
+function paintPrices(flash){SYMS.forEach(c=>{const d=liveData[c.s],pe=$("price-"+c.s),ce=$("pct-"+c.s);if(!pe||!ce)return;
+  if(!d){pe.textContent=T().fetching;ce.textContent="—";ce.className="m";return}
+  const txt=f(d.p);
+  if(flash&&pe.dataset.v!=null&&pe.dataset.v!==""&&parseFloat(pe.dataset.v)!==d.p){pe.classList.remove("fu","fd");void pe.offsetWidth;pe.classList.add(d.p>parseFloat(pe.dataset.v)?"fu":"fd");setTimeout(()=>pe.classList.remove("fu","fd"),650)}
+  pe.dataset.v=d.p;pe.textContent=txt;pe.style.fontSize=priceFontSize(txt)+"px";
+  const up=d.pct>=0;ce.textContent=pc(d.pct);ce.className="m "+(up?"up":"dn")})}
+function paintSparks(){SYMS.forEach(c=>{const el=$("spark-"+c.s);if(!el)return;const a=sparkData[c.s];if(!a||a.length<2){el.innerHTML="";return}const d=liveData[c.s];el.innerHTML=sparkPath(a,d?d.pct>=0:true)})}
+function relTail(){if(!lastOkAt)return T().fetching;const sec=Math.floor((Date.now()-lastOkAt)/1000);if(sec>30)return T().delayed;return sec<=1?T().justNow:sec+T().secAgo}
+function updateStatus(){const t=T(),el=$("live");if(el){const delayed=!!lastOkAt&&(Date.now()-lastOkAt>30000);
+  el.textContent=!lastOkAt?t.liveLoading:t.livePre+srcName+" · "+relTail();
+  el.classList.toggle("ok",!!lastOkAt&&!delayed);el.classList.toggle("delayed",delayed)}
+  SYMS.forEach(c=>{const m=$("meta-"+c.s);if(m)m.textContent=t.sourcePre+srcName+" · "+relTail()})}
+function getJSON(u){const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),9000);
+  return fetch(u,{cache:"no-store",signal:ctl.signal}).then(r=>{clearTimeout(to);if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).catch(e=>{clearTimeout(to);throw e})}
+async function pullOKX(){const j=await getJSON("https://www.okx.com/api/v5/market/tickers?instType=SPOT");const map={};(j.data||[]).forEach(d=>map[d.instId]=d);let n=0;
+  SYMS.forEach(c=>{const d=map[c.inst];if(d&&d.last){const last=parseFloat(d.last),op=parseFloat(d.open24h);liveData[c.s]={p:last,pct:op?(last-op)/op*100:0};n++}});
+  if(!n)throw new Error("empty");srcName="OKX"}
+async function pullCG(){const j=await getJSON("https://api.coingecko.com/api/v3/simple/price?ids="+SYMS.map(c=>c.cg).join(",")+"&vs_currencies=usd&include_24hr_change=true");let n=0;
+  SYMS.forEach(c=>{const d=j[c.cg];if(d&&d.usd){liveData[c.s]={p:d.usd,pct:d.usd_24h_change||0};n++}});
+  if(!n)throw new Error("empty");srcName="CoinGecko"}
+async function pullPrices(){try{await pullOKX()}catch(e){try{await pullCG()}catch(e2){updateStatus();return}}
+  lastOkAt=Date.now();paintPrices(true);paintSparks();updateStatus()}
+async function pullCandles(){await Promise.all(SYMS.map(async c=>{try{const j=await getJSON("https://www.okx.com/api/v5/market/candles?instId="+c.inst+"&bar=15m&limit=96");
+  const closes=(j.data||[]).slice().reverse().map(r=>parseFloat(r[4])).filter(v=>v>0);if(closes.length>1)sparkData[c.s]=closes}catch(e){}}));paintSparks()}
+pullPrices();pullCandles();
+setInterval(pullPrices,5000);
+setInterval(pullCandles,60000);
+setInterval(updateStatus,1000);
+/* ---------- 语言切换：原地切换全部文案，不刷新 ---------- */
+function applyLang(l){if(!I18N[l])l="zh-CN";LANG=l;
+  const t=T();document.documentElement.lang=l;document.title=t.docTitle;
+  const md=document.querySelector('meta[name="description"]');if(md)md.content=t.desc;
+  $("brand").textContent=t.site;
+  $("langLabel").textContent=t.langLabel;
+  $("backLink").textContent=t.back;
+  $("h1a").textContent=t.h1a;$("h1b").textContent=t.h1b;
+  $("rankBadge").textContent=t.rankBadge;
+  $("inviteHead").innerHTML=t.invitePre+'<b id="code">'+(CONFIG.inviteCode||"——")+'</b>'+t.invitePost;
+  $("copy").textContent=t.copy;
+  $("perk1").innerHTML=t.perk1;$("perk2").innerHTML=t.perk2;
+  $("labLinks").textContent=t.labLinks;$("labDl").textContent=t.labDl;
+  $("rebindTitle").textContent=t.rebindTitle;$("rebindDesc").innerHTML=t.rebindDesc;$("rebindBtn").textContent=t.rebindBtn;
+  const lk={register:t.linkReg,android:t.linkAndroid,ios:t.linkIos,markets:t.viewAll};
+  document.querySelectorAll("[data-l]").forEach(a=>{if(lk[a.dataset.l])a.textContent=lk[a.dataset.l]});
+  $("hotTitle").textContent=t.hot;updateStatus();
+  $("drawerSub").textContent=t.drawerSub;$("burger").setAttribute("aria-label",t.burger);
+  document.querySelectorAll("[data-setlang]").forEach(b=>{const on=b.dataset.setlang===l;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false")});
+  renderStats();renderNav();renderBadges();renderReserve();buildCards()}
+document.querySelectorAll("[data-setlang]").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.setlang)));
+applyLang(LANG);
+</script>
+</body>
+</html>
