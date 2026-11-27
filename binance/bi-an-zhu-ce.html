@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="theme-color" content="#eef2f9">
+<meta name="description" content="VIP专属 · 币安注册入口与热门币种实时行情。">
+<title>VIP专属 · 币安注册</title>
+<style>
+:root{--tx:#1c1c1e;--t2:rgba(60,60,67,.64);--t3:rgba(60,60,67,.42);--y:#fcd535;--up:#1b9a43;--dn:#d92a1f;--upb:#34c759;--dnb:#ff3b30;--ac:#007aff;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{color:var(--tx);font-family:-apple-system,"SF Pro Display","SF Pro Text","PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;font-size:15px;line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:#eef2f9}
+a{color:inherit;text-decoration:none}
+.m{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.dn{color:var(--dn)}
+:focus-visible{outline:2.5px solid var(--ac);outline-offset:2px}
+/* 背景：近白 + 淡蓝/蜜桃/薄荷/淡紫光晕 */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(165deg,#fcfdff 0%,#f1f5fc 48%,#e8eef8 100%)}
+.bg i{position:absolute;border-radius:50%;filter:blur(80px)}
+.bg .o1{width:52vmax;height:52vmax;left:-18vmax;top:-18vmax;background:rgba(140,185,255,.5)}
+.bg .o2{width:38vmax;height:38vmax;right:-12vmax;top:8vmax;background:rgba(255,196,165,.55)}
+.bg .o3{width:40vmax;height:40vmax;left:22vw;bottom:-22vmax;background:rgba(168,240,212,.5)}
+.bg .o4{width:30vmax;height:30vmax;right:18vw;top:52vh;background:rgba(205,190,255,.42)}
+.bg .glow{position:absolute;right:-20vmax;top:-24vmax;width:80vmax;height:80vmax;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1),rgba(255,251,240,.65) 36%,transparent 70%);filter:blur(24px)}
+/* 玻璃基础 */
+.glass{position:relative;background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,255,255,.34));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 0 0 1px rgba(90,110,150,.08),0 24px 60px -20px rgba(60,80,130,.28),0 4px 16px rgba(60,80,130,.07)}
+.glass:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;pointer-events:none;background:linear-gradient(135deg,#fff,rgba(255,255,255,.1) 34%,rgba(255,255,255,.06) 66%,rgba(255,255,255,.85));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.glass>*{position:relative;z-index:1}
+/* 顶栏 */
+header{position:sticky;top:max(10px,env(safe-area-inset-top,0px));z-index:30;max-width:1120px;margin:10px auto 0;padding:0 16px}
+.bar{border-radius:999px;padding:8px 10px 8px 16px;display:flex;align-items:center;gap:6px;min-height:56px}
+.back-home{flex:none;font-size:13px;font-weight:600;color:var(--t2);padding:8px 10px;border-radius:999px;white-space:nowrap;line-height:1.2}
+.back-home:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+@media(max-width:640px){.back-home{font-size:12px;padding:6px 6px}header{padding:0 10px}}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;margin-right:14px;white-space:nowrap;letter-spacing:-.02em}
+.brand img{width:30px;height:30px;border-radius:50%;object-fit:contain;padding:3px;background:#fff;display:block;flex:none;box-shadow:0 6px 16px rgba(200,150,0,.35)}
+nav.d{display:flex;align-items:center;gap:2px;flex:1}
+nav.d a,nav.d button{background:none;border:0;color:var(--t2);font:inherit;font-size:14px;font-weight:650;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px}
+nav.d a:hover,nav.d button:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+nav.d a.on{color:var(--tx);background:#fff;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+.more{position:relative}
+.menu{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;border-radius:22px;padding:8px;display:none}
+.more.open .menu{display:block}
+.menu a{display:block;padding:10px 12px;border-radius:14px;font-size:14px;color:var(--tx)}.menu a:hover{background:rgba(255,255,255,.9)}
+.burger{display:none;margin-left:auto;background:rgba(255,255,255,.8);border:0;color:var(--tx);border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+@media(max-width:860px){nav.d{display:none}.burger{display:block}}
+.drawer{position:fixed;inset:0;z-index:40;background:rgba(30,40,70,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none}
+.drawer.open{display:block}
+.drawer>div{position:absolute;right:10px;top:10px;bottom:10px;width:min(320px,86%);border-radius:30px;padding:22px;overflow:auto}
+.drawer h3{font-size:12px;color:var(--t2);letter-spacing:.08em;margin:8px 0}
+.drawer small{color:var(--t2);display:block;margin-bottom:12px}
+.drawer a{display:block;padding:12px;border-radius:14px;font-weight:650}.drawer a:hover{background:rgba(255,255,255,.9)}
+/* 主体 */
+main{max-width:1120px;margin:0 auto;padding:26px 16px 28px}
+.eb{font-size:12.5px;color:#9a7200;letter-spacing:.14em;font-weight:750}
+h1{font-size:clamp(36px,5vw,54px);letter-spacing:-.03em;margin:6px 0 20px;line-height:1.08;font-weight:800}
+.lab{font-size:13px;color:var(--t2);font-weight:700;margin:22px 0 10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 26px;font:inherit;font-weight:750;font-size:15px;color:#181a20;background:linear-gradient(180deg,#ffe873,var(--y));cursor:pointer;box-shadow:0 10px 24px -6px rgba(190,145,0,.55),inset 0 1.5px 0 rgba(255,255,255,.7);transition:transform .15s,filter .15s;min-height:44px}
+.btn:hover{filter:brightness(1.04);transform:translateY(-1px)}.btn:active{transform:scale(.98)}
+.btn.g{background:rgba(255,255,255,.8);color:var(--tx);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.1),0 4px 14px rgba(60,80,130,.1)}
+.btn.g:hover{background:#fff}
+.btn.s{padding:9px 18px;font-size:13.5px;min-height:38px}
+/* 邀请条 */
+.invite{background:rgba(255,255,255,.62);border-radius:20px;padding:19px 22px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.08)}
+.invite-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex:none;min-width:0}
+.invite-left>.btn{flex-shrink:0}
+.invite-div{flex:none;align-self:stretch;width:1px;background:linear-gradient(180deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+.invite-lines{color:var(--t2);font-size:14px;text-align:left;line-height:1.5;flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:7px}
+.invite-head{font-size:17px;font-weight:750;color:var(--tx);letter-spacing:-.01em}
+.invite-head b{color:#8a6400;font-size:23px;font-weight:850;letter-spacing:.06em;margin:0 6px;line-height:inherit;font-variant-numeric:lining-nums tabular-nums;-webkit-font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0;font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0}
+.perk{display:flex;align-items:center;gap:9px;min-width:0}
+.perk-dot{flex:none;width:19px;height:19px;border-radius:50%;background:linear-gradient(180deg,#ffe873,var(--y));color:#7a5800;font-size:11.5px;font-weight:900;line-height:1;display:grid;place-items:center;box-shadow:inset 0 1px 0 #fff,0 2px 6px rgba(190,145,0,.35)}
+.perk .hl{font-family:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;font-size:1.3em;font-weight:800;letter-spacing:.02em;line-height:1.25;white-space:nowrap;vertical-align:baseline;font-variant-numeric:lining-nums tabular-nums;-webkit-font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0;font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0;background:linear-gradient(180deg,#111 0%,#1a1607 55%,#8a6400 78%,#c1920a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 等高数字：仅数字本身换用默认即等高数字的字体渲染，字号/行高/字重继承所在元素，汉字与其它样式不动 */
+.ln{font-family:"Helvetica Neue",Helvetica,Arial,Roboto,"Segoe UI",sans-serif;font-variant-numeric:lining-nums tabular-nums;-webkit-font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0;font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0}
+@media(max-width:560px){
+  .invite{padding:16px;gap:12px;flex-direction:column;align-items:stretch}
+  .invite-left{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+  .invite-div{width:auto;height:1px;align-self:auto;background:linear-gradient(90deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+  .invite-lines{font-size:13px;line-height:1.55;gap:8px;width:100%}
+  .invite-head{font-size:15.5px}
+  .invite-head b{font-size:20px;margin:0 4px}
+  /* 福利行：勾点固定宽成列、顶对齐首行；文字区 flex 承接换行，续行与首行文字左边缘齐（悬挂缩进） */
+  .perk{align-items:flex-start;gap:8px;line-height:1.55}
+  .perk-dot{flex:0 0 18px;width:18px;height:18px;font-size:10.5px;margin-top:1px}
+  .perk>span:last-child{flex:1 1 auto;min-width:0;line-height:1.55}
+  .perk .hl{font-size:1.18em;line-height:inherit;vertical-align:baseline;letter-spacing:0}
+  .invite-left>.btn{padding:9px 15px}
+  /* 邀请条与下一节标题拉开间距，标题不被卡片压住 */
+  .invite+.lab{margin-top:30px}
+}
+/* 热门币种（注册区下方通栏横排） */
+.hot{margin-top:20px;border-radius:34px;padding:26px 28px}
+@media(max-width:560px){.hot{padding:20px}}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px;flex-wrap:wrap}
+.hd h2{font-size:20px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;flex-wrap:wrap}
+.live{font-size:12px;color:var(--t2);display:inline-flex;align-items:center;gap:6px;font-weight:650;background:rgba(255,255,255,.7);padding:5px 11px;border-radius:999px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.08)}
+.live:before{content:"";width:8px;height:8px;border-radius:50%;background:#b0b6bf;flex:none}
+.live.on{color:var(--up)}.live.on:before{background:var(--upb);box-shadow:0 0 0 3px rgba(52,199,89,.22);animation:pu 1.8s infinite}
+.live.bad{color:var(--dn)}.live.bad:before{background:var(--dnb)}
+@keyframes pu{50%{box-shadow:0 0 0 6px rgba(52,199,89,0)}}
+.hd>a{color:#0062cc;font-size:14px;font-weight:650;padding-top:4px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}.coin .meta{font-size:10.5px}.meta-pre{display:none}}
+.coin{border-radius:20px;padding:14px 16px;transition:transform .2s,box-shadow .2s;min-width:0;display:flex;flex-direction:column}
+.coin:hover{transform:translateY(-2px)}
+.coin .t{display:flex;justify-content:space-between;align-items:baseline;font-weight:750;gap:8px;white-space:nowrap}
+.coin .t b{font-size:15px}
+.coin .t span{font-size:12px;font-weight:750;margin-left:auto}
+.coin .p{font-size:16px;font-weight:800;margin:6px 0 4px;letter-spacing:-.02em;border-radius:8px;padding:0 4px;margin-left:-4px;white-space:nowrap}
+.coin .meta{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap;overflow:hidden;margin-bottom:8px}
+.coin svg{width:100%;height:30px;display:block;margin-top:auto}
+.fu{animation:fu .9s}.fd{animation:fd .9s}
+@keyframes fu{from{background:rgba(52,199,89,.4)}}@keyframes fd{from{background:rgba(255,59,48,.35)}}
+.downbar{margin-top:12px;background:rgba(255,236,234,.8);border:1px solid rgba(217,42,31,.28);color:#8f1d14;border-radius:16px;padding:12px 14px;font-size:13px;line-height:1.65;display:none;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.downbar.on{display:flex}
+.downbar span{flex:1;min-width:200px}
+/* 信任 + SAFU */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+@media(max-width:760px){.badges{grid-template-columns:1fr}}
+.badge{border-radius:28px;padding:20px;display:flex;gap:14px;align-items:center;font-size:14px;color:var(--t2);line-height:1.6}
+.safu{margin-top:20px;border-radius:34px;padding:32px}
+.safu h2{font-size:25px;margin-bottom:8px;letter-spacing:-.02em}
+.safu p{color:var(--t2);max-width:640px}
+.safu .st{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+@media(max-width:700px){.safu .st{grid-template-columns:1fr}}
+.safu .st div{background:rgba(255,255,255,.6);border-radius:18px;padding:16px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.07)}
+.safu .st b{display:block;font-size:24px;color:#9a7200}.safu .st span{font-size:12.5px;color:var(--t2)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid #fff;box-shadow:0 16px 40px rgba(40,70,130,.22);color:var(--tx);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:650;transition:all .3s;z-index:60;max-width:calc(100% - 40px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+/* 白玻璃贵气面板：强模糊 + 香槟金光晕 + 极淡金色细线 + 细金边 */
+.royal{border-radius:34px;padding:38px 36px;color:var(--tx);background:radial-gradient(120% 90% at 85% 0%,rgba(240,185,11,.16),transparent 55%),radial-gradient(90% 70% at 8% 100%,rgba(255,214,120,.12),transparent 60%),repeating-linear-gradient(180deg,rgba(185,126,4,.05) 0,rgba(185,126,4,.05) 1px,transparent 1px,transparent 24px),linear-gradient(160deg,rgba(255,255,255,.82),rgba(255,255,255,.52));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(185,126,4,.38);box-shadow:0 24px 60px -20px rgba(60,80,130,.28),0 4px 16px rgba(60,80,130,.07),inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(255,255,255,.35)}
+@media(max-width:900px){.royal{padding:28px 24px}}
+.royal .eb{color:#9a7200;letter-spacing:.34em}
+.royal h1{color:#181a20}
+.gold-text{background:linear-gradient(180deg,#f2c230 0%,#dfa106 55%,#b97e04 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 黑金渐变：黑约 55% 转金、末端 #c1920a —— 标题、数据行说明、邀请高亮共用 */
+.black-gold,.royal .rbig span{background:linear-gradient(180deg,#111 0%,#1a1607 55%,#8a6400 78%,#c1920a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 数据行：大号数字 + 同行说明（基线对齐），右侧两个月桂 No.1 */
+.rstats{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:24px}
+.rbig{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.rbig b{font-size:clamp(46px,6vw,66px);font-weight:850;letter-spacing:-.02em;line-height:1}
+.rbig span{color:#1c1c1e;font-weight:800;font-size:clamp(17px,2.2vw,23px);line-height:1.25;letter-spacing:.02em;white-space:nowrap}
+.rno1s{display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap}
+.rno1{display:flex;align-items:center;gap:4px}
+.rno1-mid{text-align:center}
+.rno1-mid b{display:block;font-size:clamp(30px,4vw,44px);font-weight:850;line-height:1.05}
+.rno1-mid span{display:block;color:#9a7200;font-size:13px;font-weight:650;letter-spacing:.18em;margin-top:5px}
+.laurel{flex:none}
+/* 邀请条内小月桂：与统计区同款图案，缩小后与文字基线对齐 */
+.laurel-sm{width:11px;height:22px;vertical-align:-6px}
+/* 邀请条（贵气面板内）：白玻璃 + 金边 */
+.royal .invite{background:rgba(255,255,255,.55);border:1px solid rgba(185,126,4,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 14px rgba(60,80,130,.06)}
+.royal .invite-head{color:var(--tx)}
+.royal .invite-head b{color:#9a7200}
+.royal .invite-lines{color:var(--t2)}
+.royal .invite-div{background:linear-gradient(180deg,transparent,rgba(185,126,4,.35) 22%,rgba(185,126,4,.35) 78%,transparent)}
+.royal .lab{color:#9a7200}
+.royal .btn.g{background:rgba(255,255,255,.75);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(185,126,4,.5),inset 0 1px 0 rgba(255,255,255,.9),0 4px 14px rgba(60,80,130,.08)}
+.royal .btn.g:hover{background:#fff}
+.royal .invite .btn{background:linear-gradient(180deg,#ffe873,var(--y));color:#181a20;box-shadow:0 10px 24px -6px rgba(190,145,0,.55),inset 0 1.5px 0 rgba(255,255,255,.7)}
+.royal .invite .btn:hover{background:linear-gradient(180deg,#ffe873,var(--y));filter:brightness(1.04)}
+@media(max-width:560px){
+  .royal{padding:26px 20px}
+  .rstats{flex-direction:column;align-items:flex-start;gap:22px}
+  .rno1s{gap:20px}
+  .rno1 .laurel{width:24px;height:48px}
+  .laurel-sm{width:11px;height:22px}
+  .royal .invite-div{background:linear-gradient(90deg,transparent,rgba(185,126,4,.35) 22%,rgba(185,126,4,.35) 78%,transparent)}
+}
+
+/* 标题上方金色小徽章：金边 + 淡金底 + 黑金渐变字 */
+.hero-badge{display:inline-flex;align-items:center;gap:7px;margin:14px 0 2px;padding:7px 16px;border:1.5px solid rgba(185,126,4,.72);border-radius:999px;background:linear-gradient(160deg,rgba(255,248,219,.92),rgba(255,240,196,.72));box-shadow:0 0 0 1px rgba(252,213,53,.35),0 6px 16px -6px rgba(185,126,4,.4),inset 0 1px 0 rgba(255,255,255,.9);font-size:15px;font-weight:800;letter-spacing:.08em;line-height:1.3}
+.hero-badge svg{flex:none;color:#b8860b}
+.hero-badge span{background:linear-gradient(180deg,#111 0%,#1a1607 55%,#8a6400 78%,#c1920a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[lang="en"] .hero-badge{font-size:13.5px;letter-spacing:.04em}
+@media(max-width:560px){.hero-badge{font-size:14px;padding:6px 14px}html[lang="en"] .hero-badge{font-size:12.5px}}
+/* 官方链接区布局：左侧链接/下载，右侧独立换补绑卡片 */
+.links-wrap{display:flex;gap:22px;align-items:stretch}
+.links-main{flex:1 1 auto;min-width:0}
+.links-main .lab:first-child{margin-top:22px}
+/* 换补绑卡片：金边 + 金色光晕，独立成块 */
+.rebind{flex:0 0 302px;max-width:340px;margin-top:22px;border:1.5px solid rgba(185,126,4,.78);border-radius:24px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(160deg,rgba(255,248,219,.96),rgba(255,255,255,.78) 62%,rgba(255,240,196,.85));box-shadow:0 0 0 1px rgba(252,213,53,.4),0 0 30px rgba(240,185,11,.3),0 18px 38px -12px rgba(185,126,4,.38),inset 0 1px 0 rgba(255,255,255,.95)}
+.rebind-title{display:flex;align-items:center;gap:9px;font-size:20.5px;font-weight:850;letter-spacing:-.01em;color:#181a20;line-height:1.25}
+.rebind-title svg{flex:none;color:#b8860b}
+.rebind p{color:var(--t2);font-size:14px;line-height:1.65;flex:1}
+.rebind p b{color:#8a6400;font-weight:800;letter-spacing:.04em;font-size:1.14em;line-height:inherit;font-variant-numeric:lining-nums tabular-nums;-webkit-font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0;font-feature-settings:"lnum" 1,"tnum" 1,"onum" 0}
+.rebind-btn{width:100%;font-size:16.5px;padding:14px 22px;margin-top:4px}
+@media(max-width:860px){
+  .links-wrap{flex-direction:column;gap:0}
+  .rebind{flex:none;max-width:none;width:100%;margin-top:20px}
+}
+@media(max-width:560px){
+  .links-main .lab:first-child{margin-top:30px}
+  .rebind{padding:20px}
+}
+html[lang="en"] .rebind-title{font-size:18.5px}
+html[lang="en"] .rebind p{font-size:13.5px}
+
+/* 语言切换（顶栏右侧，低调分段控件） */
+.lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.55);border-radius:999px;padding:3px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.1);flex:none;margin-left:8px}
+.lang-switch button{background:none;border:0;font:inherit;font-size:12.5px;font-weight:650;color:var(--t2);padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px;line-height:1.2}
+.lang-switch button:hover{color:var(--tx)}
+.lang-switch button.on{background:#fff;color:var(--tx);box-shadow:0 2px 8px rgba(60,80,130,.16)}
+@media(max-width:640px){.bar{gap:2px;padding:8px 6px 8px 10px}.brand{gap:6px;margin-right:4px;font-size:15.5px}.brand img{width:26px;height:26px}.burger{width:36px;height:36px}.lang-switch{margin-left:2px;padding:2px}.lang-switch button{padding:6px 6px;font-size:11.5px}html[lang="en"] .brand{font-size:13px;letter-spacing:-.03em}}
+/* 英文文案较长时整体收紧，避免溢出/截断 */
+html[lang="en"] h1{font-size:clamp(32px,5vw,50px)}
+html[lang="en"] .brand{font-size:15.5px;margin-right:8px}
+html[lang="en"] nav.d a,html[lang="en"] nav.d button{font-size:13px;padding:8px 9px}
+html[lang="en"] .invite-head{font-size:15.5px;letter-spacing:0}
+html[lang="en"] .invite-lines{font-size:13.5px}
+html[lang="en"] .perk .hl{font-size:1.15em}
+html[lang="en"] .rbig span{white-space:normal}
+html[lang="en"] .rno1-mid span{letter-spacing:.05em}
+html[lang="en"] .btn{padding-left:20px;padding-right:20px;font-size:14px}
+html[lang="en"] .badge{font-size:13px}
+html[lang="en"] .safu .st b{font-size:21px}
+html[lang="en"] .safu h2{font-size:23px}
+@media(max-width:560px){html[lang="en"] .invite-head{font-size:14px}html[lang="en"] .invite-lines{font-size:12.5px}html[lang="en"] .btn{padding-left:16px;padding-right:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i><div class="glow"></div></div>
+<header><div class="bar glass">
+  <a class="back-home" id="backHome" href="https://aabb1-code.github.io/">← 返回选择</a>
+  <a class="brand" href="#"><img id="mark" src="data:image/png;base64,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" alt="" width="30" height="30"><span id="brand">VIP专属</span></a>
+  <nav class="d" id="nav" aria-label="站内导航"></nav>
+<div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" data-setlang="zh-CN" aria-label="简体中文">简体</button><button type="button" data-setlang="zh-TW" aria-label="繁體中文">繁體</button><button type="button" data-setlang="en" aria-label="English">EN</button></div><button class="burger" id="burger" aria-label="打开导航">☰</button>
+</div></header>
+<div class="drawer" id="drawer"><div class="glass"><h3>NAVIGATION</h3><small id="drawerSub">站内导航</small><div id="dnav"></div></div></div>
+
+<main id="reg">
+  <section class="reg royal">
+    <div>
+      <div class="eb">BINANCE REGISTER</div>
+      <div class="hero-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l2.8 6.1 6.7.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.3 1.3-6.6L2.5 9.1l6.7-.8z"/></svg><span id="heroBadge">全球最大交易所</span></div>
+      <h1><span class="black-gold" id="h1a">币安</span><span class="black-gold" id="h1b">注册</span></h1>
+      <div class="rstats" id="rstats"></div>
+      <div class="invite">
+        <div class="invite-left">
+          <div class="invite-head" id="inviteHead">使用邀请码<b class="m" id="code">——</b>注册</div>
+          <button class="btn g s" id="copy" type="button">复制</button>
+        </div>
+        <div class="invite-div" aria-hidden="true"></div>
+        <div class="invite-lines">
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk1">1、享有 <b class="hl">永久<span class="ln">20%</span></b> 手续费优惠和返佣　<svg class="laurel laurel-sm" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-122 20 8)"/></svg>全所最高<svg class="laurel laurel-sm" viewBox="0 0 36 72" aria-hidden="true" style="transform:scaleX(-1)"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(-122 20 8)"/></svg></span></div>
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk2">2、新用户交易就可享有奖励，最高单次奖励可达 <b class="hl"><span class="ln">19,800</span> USD</b></span></div>
+        </div>
+      </div>
+      <div class="links-wrap">
+        <div class="links-main">
+          <div class="lab" id="labLinks">官方链接</div>
+          <div class="row"><a class="btn" data-l="register" href="#">国内链接</a><a class="btn g" data-l="alt" href="#">国际链接</a></div>
+          <div class="lab" id="labDl">安装下载</div>
+          <div class="row"><a class="btn g" data-l="android" href="#">安卓下载</a><a class="btn g" data-l="ios" href="#">iOS 下载</a></div>
+        </div>
+        <aside class="rebind" aria-labelledby="rebindTitle">
+          <h3 class="rebind-title"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span id="rebindTitle">换、补绑链接</span></h3>
+          <p id="rebindDesc">已注册过币安账号的用户，点这里换、补绑专属邀请码：<b class="m">AABB<span class="ln">1</span></b></p>
+          <a class="btn rebind-btn" id="rebindBtn" href="#">去补绑</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="hot glass">
+    <div class="hd"><h2><span id="hotTitle">热门币种</span> <span class="live" id="live">连接中…</span></h2><a data-l="markets" href="#">查看全部</a></div>
+    <div class="grid" id="grid"></div>
+    <div class="downbar" id="downbar"><span id="downTxt">暂时拉不到行情源，正在每 5 秒自动重试。</span><button class="btn g s" id="retry" type="button">重试</button></div>
+  </section>
+
+  <section class="badges" id="badges"></section>
+  <section class="safu glass" id="safu"></section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= 只改这一段 =================
+   所有链接、邀请码、数据声明都在这里。 */
+const CONFIG={
+  siteName:"VIP专属",
+  mark:"B",                         // 顶栏左侧方块里的字
+  handle:"@BTC200708",            // 运营 X 账号
+  xUrl:"https://x.com/BTC200708",
+  inviteCode:"AABB1",               // 邀请码
+  stats:[["3亿+","用户的共同选择"],["No.1","客户资产"],["No.1","交易量"]],
+  links:{
+    register:"https://www.bsmkweb.cc/join?ref=AABB1",alt:"https://www.binance.com/join?ref=AABB1",android:"https://www.bsmkweb.net/d/Kjs5MXUYFBsqKmxudDsqMQ.00000058",ios:"https://www.bsmkweb.net/download-guide?hl=zh-CN",
+    markets:"https://www.binance.com/zh-CN/markets/overview?ref=AABB1"
+  },
+  nav:[["NEWS",""],["币安周边",""],["币安人生",""],["币安资产",""],["币安教程",""],["币安注册","#reg"]],
+  more:[["Agent ID",""],["BNB 燃烧",""],["BNB vs BTC",""],["币安服务",""],["CEX美股对比",""],["文章",""]],
+  badges:["获评《福布斯》2025 年最受信任的加密货币交易平台","在《财富》的 2024 年亚洲金融科技创新者区块链和加密货币榜单中排名第 1","入选数字资产领域的 CNBC 2025 年全球顶级金融科技公司榜单"],
+  safu:{
+    title:"资金受 SAFU 保护",
+    text:"用户资产安全基金（SAFU）于 2018 年成立，用于在罕见的紧急情况下保护用户资金。",
+    stats:[["15,000 BTC","SAFU 规模（截至 2026 年 6 月）"],["7,488,223","受护用户"],["$229,433,449","保护资金"]],
+    wallet:"SAFU 钱包：1BAuq7Vho2CEkVkUxbfU26LhwQjbCmWQkD"
+  }
+};
+/* ============================================== */
+/* 换补绑链接：用户提供真实链接后只改这一处。
+   保持 "#" 时卡片照常显示，按钮点按只弹提示「补绑链接稍后上线」，不跳转。 */
+const REBIND_URL="https://www.bsmkweb.cc/activity/referral/bind-ref";
+/* 邀请条小月桂：与统计区月桂同一画法，缩小内嵌于文字行内 */
+function laurelSm(flip){const leaves=[[25,63,-28],[17,53,-48],[12,41,-68],[11,29,-86],[14,17,-104],[20,8,-122]];
+  return `<svg class="laurel laurel-sm" viewBox="0 0 36 72" aria-hidden="true"${flip?' style="transform:scaleX(-1)"':""}><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round"/>${leaves.map(l=>`<ellipse cx="${l[0]}" cy="${l[1]}" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(${l[2]} ${l[0]} ${l[1]})"/>`).join("")}</svg>`}
+const LR_L=laurelSm(false),LR_R=laurelSm(true);
+/* ================= 三语字典（简体为基准，与 CONFIG 原文一致） ================= */
+const I18N={
+"zh-CN":{site:"VIP专属",docTitle:"VIP专属 · 币安注册",desc:"VIP专属 · 币安注册入口与热门币种实时行情。",backHome:"← 返回选择",h1a:"币安",h1b:"注册",badge:"全球最大交易所",
+ stats:CONFIG.stats,nav:CONFIG.nav,more:CONFIG.more,badges:CONFIG.badges,
+ safuTitle:CONFIG.safu.title,safuText:CONFIG.safu.text,safuLabels:CONFIG.safu.stats.map(s=>s[1]),walletLabel:"SAFU 钱包：",
+ invitePre:"使用邀请码",invitePost:"注册",copy:"复制",copied:"已复制邀请码：",soon:"该页面即将上线",noLink:"该链接还没有配置",noCode:"邀请码还没有配置",
+ perk1:'1、享有 <b class="hl">永久<span class="ln">20%</span></b> 手续费优惠和返佣　'+LR_L+'全所最高'+LR_R,perk2:'2、新用户交易就可享有奖励，最高单次奖励可达 <b class="hl"><span class="ln">19,800</span> USD</b>',
+ labLinks:"官方链接",labDl:"安装下载",linkReg:"国内链接",linkAlt:"国际链接",linkAndroid:"安卓下载",linkIos:"iOS 下载",
+ rebindTitle:"换、补绑链接",rebindDesc:'已注册过币安账号的用户，点这里换、补绑专属邀请码：<b class="m">AABB<span class="ln">1</span></b>',rebindBtn:"去补绑",rebindSoon:"补绑链接稍后上线",
+ hot:"热门币种",viewAll:"查看全部",down:"暂时拉不到行情源，正在每 5 秒自动重试。",retry:"重试",
+ drawerSub:"站内导航",drawerSite:"站点",drawerMore:"更多",burger:"打开导航",
+ connecting:"连接中…",liveWord:"实时",delayed:"数据延迟",failRetry:"拉取失败 · 重试中",sourcePre:"来源 · ",secAgo:"秒前更新",metaConn:"连接中",metaFail:"拉取失败",metaRetry:"重试中"},
+"zh-TW":{site:"VIP專屬",docTitle:"VIP專屬 · 幣安註冊",desc:"VIP專屬 · 幣安註冊入口與熱門幣種即時行情。",backHome:"← 返回選擇",h1a:"幣安",h1b:"註冊",badge:"全球最大交易所",
+ stats:[["3億+","用戶的共同選擇"],["No.1","客戶資產"],["No.1","交易量"]],
+ nav:[["NEWS",""],["幣安周邊",""],["幣安人生",""],["幣安資產",""],["幣安教程",""],["幣安註冊","#reg"]],
+ more:[["Agent ID",""],["BNB 燃燒",""],["BNB vs BTC",""],["幣安服務",""],["CEX美股對比",""],["文章",""]],
+ badges:["獲評《福布斯》2025 年最受信任的加密貨幣交易平台","在《財富》的 2024 年亞洲金融科技創新者區塊鏈和加密貨幣榜單中排名第 1","入選數位資產領域的 CNBC 2025 年全球頂級金融科技公司榜單"],
+ safuTitle:"資金受 SAFU 保護",safuText:"用戶資產安全基金（SAFU）於 2018 年成立，用於在罕見的緊急情況下保護用戶資金。",safuLabels:["SAFU 規模（截至 2026 年 6 月）","受護用戶","保護資金"],walletLabel:"SAFU 錢包：",
+ invitePre:"使用邀請碼",invitePost:"註冊",copy:"複製",copied:"已複製邀請碼：",soon:"該頁面即將上線",noLink:"該連結還沒有配置",noCode:"邀請碼還沒有配置",
+ perk1:'1、享有 <b class="hl">永久<span class="ln">20%</span></b> 手續費優惠和返傭　'+LR_L+'全所最高'+LR_R,perk2:'2、新用戶交易就可享有獎勵，最高單次獎勵可達 <b class="hl"><span class="ln">19,800</span> USD</b>',
+ labLinks:"官方連結",labDl:"安裝下載",linkReg:"國內連結",linkAlt:"國際連結",linkAndroid:"安卓下載",linkIos:"iOS 下載",
+ rebindTitle:"換、補綁連結",rebindDesc:'已註冊過幣安帳號的用戶，點這裡換、補綁專屬邀請碼：<b class="m">AABB<span class="ln">1</span></b>',rebindBtn:"去補綁",rebindSoon:"補綁連結稍後上線",
+ hot:"熱門幣種",viewAll:"查看全部",down:"暫時拉不到行情源，正在每 5 秒自動重試。",retry:"重試",
+ drawerSub:"站內導航",drawerSite:"站點",drawerMore:"更多",burger:"打開導航",
+ connecting:"連接中…",liveWord:"即時",delayed:"數據延遲",failRetry:"拉取失敗 · 重試中",sourcePre:"來源 · ",secAgo:"秒前更新",metaConn:"連接中",metaFail:"拉取失敗",metaRetry:"重試中"},
+"en":{site:"VIP Exclusive",docTitle:"VIP Exclusive · Binance Sign-Up",desc:"VIP Exclusive · Binance sign-up portal and live prices for popular cryptocurrencies.",backHome:"← Back",h1a:"Binance",h1b:" Sign-Up",badge:"The World's Largest Exchange",
+ stats:[["300M+","Chosen by users worldwide"],["No.1","Client Assets"],["No.1","Trading Volume"]],
+ nav:[["NEWS",""],["Binance Merch",""],["Binance Life",""],["Binance Assets",""],["Binance Tutorials",""],["Binance Sign-Up","#reg"]],
+ more:[["Agent ID",""],["BNB Burn",""],["BNB vs BTC",""],["Binance Services",""],["CEX vs US Stocks",""],["Articles",""]],
+ badges:["Named by Forbes as the most trusted cryptocurrency exchange of 2025","Ranked No. 1 on Fortune's 2024 Asia Fintech Innovators list for blockchain and cryptocurrency","Selected for CNBC's 2025 list of the world's top fintech companies in digital assets"],
+ safuTitle:"Funds Protected by SAFU",safuText:"The Secure Asset Fund for Users (SAFU) was established in 2018 to protect user funds in rare emergency situations.",safuLabels:["SAFU size (as of June 2026)","Protected users","Funds protected"],walletLabel:"SAFU Wallet: ",
+ invitePre:"Register with invite code ",invitePost:"",copy:"Copy",copied:"Invite code copied: ",soon:"This page is coming soon",noLink:"This link has not been configured yet",noCode:"The invite code has not been configured yet",
+ perk1:'1. Enjoy a <b class="hl">permanent <span class="ln">20%</span></b> fee discount and rebates　'+LR_L+'the highest across all exchanges'+LR_R,perk2:'2. New users can earn rewards on every trade, up to <b class="hl"><span class="ln">19,800</span> USD</b> per reward',
+ labLinks:"Official Links",labDl:"Get the App",linkReg:"Domestic Link",linkAlt:"International Link",linkAndroid:"Android Download",linkIos:"iOS Download",
+ rebindTitle:"Change / Rebind Link",rebindDesc:'Already have a Binance account? Change or rebind your exclusive invite code here: <b class="m">AABB<span class="ln">1</span></b>',rebindBtn:"Rebind Now",rebindSoon:"Rebind link coming soon",
+ hot:"Popular Coins",viewAll:"View All",down:"Price sources are unreachable for now. Retrying automatically every 5 seconds.",retry:"Retry",
+ drawerSub:"Site Navigation",drawerSite:"Site",drawerMore:"More",burger:"Open navigation",
+ connecting:"Connecting…",liveWord:"Live",delayed:"Data delayed",failRetry:"Fetch failed · Retrying",sourcePre:"Source · ",secAgo:"s ago",metaConn:"Connecting",metaFail:"Fetch failed",metaRetry:"Retrying"}
+};
+let LANG="zh-CN";try{const s=localStorage.getItem("vip-lang");if(s&&I18N[s])LANG=s}catch(e){}
+const T=()=>I18N[LANG];
+function mapSrc(s){if(!s)return s;if(LANG==="zh-TW")return s.replace(/币/g,"幣").replace("直连","直連").replace("中转","中轉").replace("实时","即時");
+ if(LANG==="en")return s.replace("中转·","Relay · ").replace("币安直播","Binance Live").replace("币安","Binance").replace("直连","Direct").replace("实时","Live");return s}
+const $=id=>document.getElementById(id);
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2200)}
+$("code").textContent=CONFIG.inviteCode||"待填写";
+// 金色月桂枝（本地 SVG，与全栈版同一画法）
+function laurel(flip){const leaves=[[25,63,-28],[17,53,-48],[12,41,-68],[11,29,-86],[14,17,-104],[20,8,-122]];
+  return `<svg class="laurel" viewBox="0 0 36 72" width="30" height="60" aria-hidden="true"${flip?' style="transform:scaleX(-1)"':""}><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round"/>${leaves.map(l=>`<ellipse cx="${l[0]}" cy="${l[1]}" rx="3.1" ry="7" fill="#dfa92e" transform="rotate(${l[2]} ${l[0]} ${l[1]})"/>`).join("")}</svg>`}
+// 数据行：第一个是大号数字 + 同行说明；其余是月桂 No.1
+function renderStats(){const st=T().stats;$("rstats").innerHTML=(st.length?`<div class="rbig"><b class="gold-text">${st[0][0]}</b><span>${st[0][1]}</span></div>`:"")
+  +(st.length>1?`<div class="rno1s">${st.slice(1).map(s=>`<div class="rno1">${laurel(false)}<div class="rno1-mid"><b class="gold-text">${s[0]}</b><span>${s[1]}</span></div>${laurel(true)}</div>`).join("")}</div>`:"");
+  $("rstats").style.display=st.length?"":"none"}
+renderStats();
+// 导航（站点 + 更多）
+const nl=(a,cls="")=>`<a ${a[1]&&a[1][0]!=="#"?`href="${a[1]}" target="_blank" rel="noopener"`:`href="${a[1]||"#"}" ${a[1]?"":'data-soon="1"'}`} class="${cls}">${a[0]}</a>`;
+function renderNav(){const t=T();$("nav").innerHTML=t.nav.map(a=>nl(a,a[1]==="#reg"?"on":"")).join("")+`<div class="more" id="more"><button id="mb" aria-haspopup="true">${LANG==="en"?"More":"更多"} ▾</button><div class="menu glass">${t.more.map(a=>nl(a)).join("")}</div></div>`;
+$("dnav").innerHTML=`<h3>${t.drawerSite}</h3>`+t.nav.map(a=>nl(a)).join("")+`<h3>${t.drawerMore}</h3>`+t.more.map(a=>nl(a)).join("")}
+renderNav();
+document.addEventListener("click",e=>{const a=e.target.closest("[data-soon]");if(a){e.preventDefault();toast(T().soon)}
+  const mb=e.target.closest("#mb");$("more").classList.toggle("open",!!mb&&!$("more").classList.contains("open"));
+  if(e.target.closest("#burger"))$("drawer").classList.add("open");else if(!e.target.closest("#dnav")&&e.target.closest("#drawer")||e.target.closest("#dnav a"))$("drawer").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("more").classList.remove("open");$("drawer").classList.remove("open")}});
+// 邀请相关链接
+document.querySelectorAll("[data-l]").forEach(a=>{const u=CONFIG.links[a.dataset.l];
+  if(!u){a.classList.add("pending");a.addEventListener("click",e=>{e.preventDefault();toast(T().noLink)});return}
+  a.href=u;a.target="_blank";a.rel="noopener sponsored"});
+/* 换补绑按钮：REBIND_URL 为真实链接时新窗口打开；仍为 "#" 占位时只弹提示、不跳转 */
+(function(){const rb=$("rebindBtn");if(!rb)return;
+  if(REBIND_URL&&REBIND_URL!=="#"){rb.href=REBIND_URL;rb.target="_blank";rb.rel="noopener sponsored"}
+  else{rb.addEventListener("click",e=>{e.preventDefault();toast(T().rebindSoon)})}})();
+$("copy").onclick=async()=>{const c=CONFIG.inviteCode;if(!c)return toast(T().noCode);try{await navigator.clipboard.writeText(c)}catch(e){const t=document.createElement("textarea");t.value=c;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}toast(T().copied+c)};
+// 荣誉 / SAFU
+const AWARD='<svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex:none"><circle cx="24" cy="19" r="11" stroke="#b8860b" stroke-width="2.4"/><path d="M24 12.5l1.9 3.9 4.3.6-3.1 3 0.7 4.3L24 22.3l-3.8 2-0.7-4.3-3.1-3 4.3-.6z" fill="#fcd535"/><path d="M18.5 27.5L15 40l9-4.6L33 40l-3.5-12.5" stroke="#b8860b" stroke-width="2.4" stroke-linejoin="round"/></svg>';
+function renderBadges(){const bs=T().badges;$("badges").innerHTML=bs.map(b=>`<div class="badge glass">${AWARD}<span>${b}</span></div>`).join("");$("badges").style.display=bs.length?"":"none"}
+function renderSafu(){const t=T();$("safu").innerHTML=`<h2>${t.safuTitle}</h2><p>${t.safuText}</p>`+(CONFIG.safu.stats.length?`<div class="st">${CONFIG.safu.stats.map((s,i)=>`<div><b>${s[0]}</b><span>${t.safuLabels[i]||s[1]}</span></div>`).join("")}</div>`:"")+(CONFIG.safu.wallet?`<p class="m" style="margin-top:16px;font-size:12.5px;word-break:break-all">${t.walletLabel+CONFIG.safu.wallet.replace(/^SAFU 钱包：/,"")}</p>`:"")}
+renderBadges();renderSafu();
+
+/* ---------- 语言切换：原地切换全部文案，不刷新、不重拉价格 ---------- */
+function applyLang(l){if(!I18N[l])l="zh-CN";LANG=l;try{localStorage.setItem("vip-lang",l)}catch(e){}
+  const t=T();document.documentElement.lang=l;document.title=t.docTitle;
+  const md=document.querySelector('meta[name="description"]');if(md)md.content=t.desc;
+  $("brand").textContent=t.site;
+  $("backHome").textContent=t.backHome;
+  $("h1a").textContent=t.h1a;$("h1b").textContent=t.h1b;
+  $("heroBadge").textContent=t.badge;
+  $("inviteHead").innerHTML=t.invitePre+'<b class="m" id="code">'+(CONFIG.inviteCode||"——").replace(/([0-9])/g,'<span class="ln">$1</span>')+'</b>'+t.invitePost;
+  $("copy").textContent=t.copy;
+  $("perk1").innerHTML=t.perk1;$("perk2").innerHTML=t.perk2;
+  $("labLinks").textContent=t.labLinks;$("labDl").textContent=t.labDl;
+  $("rebindTitle").textContent=t.rebindTitle;$("rebindDesc").innerHTML=t.rebindDesc;$("rebindBtn").textContent=t.rebindBtn;
+  const lk={register:t.linkReg,alt:t.linkAlt,android:t.linkAndroid,ios:t.linkIos,markets:t.viewAll};
+  document.querySelectorAll("[data-l]").forEach(a=>{if(lk[a.dataset.l])a.textContent=lk[a.dataset.l]});
+  $("hotTitle").textContent=t.hot;$("downTxt").textContent=t.down;$("retry").textContent=t.retry;
+  $("drawerSub").textContent=t.drawerSub;$("burger").setAttribute("aria-label",t.burger);
+  document.querySelectorAll("[data-setlang]").forEach(b=>{const on=b.dataset.setlang===l;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false")});
+  renderStats();renderNav();renderBadges();renderSafu();
+  try{if(typeof draw==="function")draw()}catch(e){}}
+document.querySelectorAll("[data-setlang]").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.setlang)));
+applyLang(LANG);
+
+/* ---------- 实时热门币种：币安 WebSocket 直播推价（无 CORS 限制）+ 七家跨域直连 REST 并行竞速（币安 / OKX / Gate / Bitget / Binance US / HTX / CoinGecko，均已实测放行跨域）；直连全失败再走公开中转（AllOrigins / Codetabs）兜底。REST 每 5 秒一轮，拉不到显示 --，绝不编价 ---------- */
+const COINS=["BTC","ETH","BNB","SOL","XRP"];
+const CG_IDS={BTC:"bitcoin",ETH:"ethereum",BNB:"binancecoin",SOL:"solana",XRP:"ripple"};
+const CG_URL="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true";
+const tk={},pv={},sp={},hist={},tkAt={};let lastMsg=0,srcName="",everOk=false,failed=false,roundBusy=false,roundDone=false;
+const dp=v=>v>=1000?2:v>=10?2:v>=1?3:v>=.01?5:7,f=v=>"$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:dp(v),maximumFractionDigits:dp(v)}),pc=v=>(v>=0?"+":"")+v.toFixed(2)+"%";
+function priceFontSize(text){const len=text.length;if(len<=9)return 16;if(len<=11)return 14.5;if(len<=13)return 13;return 11.5}
+$("grid").innerHTML=COINS.map(c=>`<div class="coin glass" id="c${c}"><div class="t"><b>${c}</b><span class="m">--</span></div><div class="p m">--</div><div class="meta">连接中</div><svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"></svg></div>`).join("");
+function spark(a,up){if(!a||a.length<2)return"";const mn=Math.min(...a),mx=Math.max(...a),r=mx-mn||1,d=a.map((v,i)=>(i?"L":"M")+(i/(a.length-1)*100).toFixed(1)+" "+(3+(1-(v-mn)/r)*24).toFixed(1)).join("");return`<path d="${d}" fill="none" stroke="${up?"#34c759":"#ff3b30"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`}
+function draw(){COINS.forEach(c=>{const q=tk[c],el=$("c"+c);if(!el)return;const p=el.querySelector(".p"),s=el.querySelector(".t span"),mt=el.querySelector(".meta");
+  if(!q){if(failed&&!everOk){p.textContent=T().metaFail;p.style.fontSize="13px";s.textContent="--";mt.textContent=T().metaRetry}else{mt.textContent=T().metaConn}return}
+  const pct=q.pct!=null?q.pct:(q.p-q.o)/q.o*100,up=pct>=0;const ptxt=f(q.p);p.textContent=ptxt;p.style.fontSize=priceFontSize(ptxt)+"px";
+  s.textContent=pc(pct);s.className="m "+(up?"up":"dn");
+  const at=tkAt[c]||lastMsg;mt.innerHTML=`<span class="meta-pre">${T().sourcePre}</span>${mapSrc(q.src||srcName||T().liveWord)} · ${at?Math.max(0,Math.round((performance.now()-at)/1000)):0}${T().secAgo}`;
+  if(pv[c]!=null&&pv[c]!==q.p){p.classList.remove("fu","fd");void p.offsetWidth;p.classList.add(q.p>pv[c]?"fu":"fd")}pv[c]=q.p;
+  const line=(sp[c]&&sp[c].length>1)?sp[c]:hist[c];
+  el.querySelector("svg").innerHTML=spark(line,up)})}
+async function ft(u,ms){const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),ms||6000);let r;try{r=await fetch(u,{signal:ctl.signal})}catch(e){throw new Error(e&&e.name==="AbortError"?"请求超时":"网络不通/CORS拦截")}finally{clearTimeout(t)}
+  if(!r.ok)throw new Error("HTTP "+r.status);try{return await r.json()}catch(e){throw new Error("返回数据格式异常")}}
+const RANGE={BTC:[10000,200000],ETH:[200,10000],BNB:[50,2000],SOL:[5,1000],XRP:[.05,10]};
+const pend={};
+function setQ(c,p,pct,src){if(!COINS.includes(c)||!(p>0)||pct==null||!isFinite(pct))return false;
+  const rg=RANGE[c];if(p<rg[0]||p>rg[1])return false;
+  const cur=tk[c];
+  if(cur&&performance.now()-(tkAt[c]||0)<30000&&Math.abs(p-cur.p)/cur.p>.02){const pd=pend[c];
+    if(pd&&Math.abs(p-pd.p)/pd.p<.005){pd.n++;if(pd.n<2)return false}
+    else{pend[c]={p,n:1};return false}}
+  pend[c]=null;const o=p/(1+pct/100||1);tk[c]={p,o,pct,src};tkAt[c]=performance.now();lastMsg=tkAt[c];srcName=src;everOk=true;failed=false;
+  if(sp[c]&&sp[c].length>1)sp[c][sp[c].length-1]=p;
+  const h=hist[c]||(hist[c]=[]);if(!h.length||h[h.length-1]!==p){h.push(p);if(h.length>48)h.shift()}
+  return true}
+/* 解析 CoinGecko simple/price 返回：逐币过 setQ 校验后写入，返回成功币数；上游限流体直接抛错 */
+function cgParse(j,src){if(!j||typeof j!=="object")throw new Error("返回数据格式异常");
+  if(j.status&&j.status.error_code)throw new Error("上游限流 HTTP "+j.status.error_code);
+  let n=0;COINS.forEach(c=>{const x=j[CG_IDS[c]];if(x&&+x.usd>0&&x.usd_24h_change!=null&&setQ(c,+x.usd,+x.usd_24h_change,src))n++});
+  if(!n)throw new Error("返回数据缺少币种价格");return n}
+/* 直连源（优先）：七家都允许跨域直连（已逐个实测 ACAO 放行），一次并行发出，哪个先返回有效价就先用 */
+const DIRECT=[
+ {name:"币安",fn:async()=>{const j=await ft("https://data-api.binance.vision/api/v3/ticker/24hr?symbols="+encodeURIComponent(JSON.stringify(COINS.map(c=>c+"USDT"))));if(!Array.isArray(j)||!j.length)throw new Error("空数据");let n=0;j.forEach(x=>{const c=x.symbol.replace("USDT","");if(COINS.includes(c)&&setQ(c,+x.lastPrice,+x.priceChangePercent,"币安"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"OKX",fn:async()=>{const rs=await Promise.allSettled(COINS.map(c=>ft("https://www.okx.com/api/v5/market/ticker?instId="+c+"-USDT")));let n=0;rs.forEach((r,i)=>{if(r.status!=="fulfilled"||r.value.code!=="0"||!r.value.data||!r.value.data.length)return;const x=r.value.data[0],pr=+x.last,o=+x.open24h;if(pr>0&&o>0&&setQ(COINS[i],pr,(pr-o)/o*100,"OKX"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"Gate",fn:async()=>{const rs=await Promise.allSettled(COINS.map(c=>ft("https://api.gateio.ws/api/v4/spot/tickers?currency_pair="+c+"_USDT")));let n=0;rs.forEach((r,i)=>{if(r.status!=="fulfilled"||!Array.isArray(r.value)||!r.value.length)return;const x=r.value[0];if(setQ(COINS[i],+x.last,+x.change_percentage,"Gate"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"Bitget",fn:async()=>{const rs=await Promise.allSettled(COINS.map(c=>ft("https://api.bitget.com/api/v2/spot/market/tickers?symbol="+c+"USDT")));let n=0;rs.forEach((r,i)=>{if(r.status!=="fulfilled"||r.value.code!=="00000"||!r.value.data||!r.value.data.length)return;const x=r.value.data[0];if(setQ(COINS[i],+x.lastPr,+x.change24h*100,"Bitget"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"Binance US",fn:async()=>{const j=await ft("https://api.binance.us/api/v3/ticker/24hr?symbols="+encodeURIComponent(JSON.stringify(COINS.map(c=>c+"USD"))));if(!Array.isArray(j)||!j.length)throw new Error("空数据");let n=0;j.forEach(x=>{const c=x.symbol.replace(/USD$/,"");if(COINS.includes(c)&&setQ(c,+x.lastPrice,+x.priceChangePercent,"Binance US"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"HTX",fn:async()=>{const rs=await Promise.allSettled(COINS.map(c=>ft("https://api.huobi.pro/market/detail/merged?symbol="+c.toLowerCase()+"usdt")));let n=0;rs.forEach((r,i)=>{if(r.status!=="fulfilled"||r.value.status!=="ok"||!r.value.tick)return;const x=r.value.tick;if(+x.close>0&&+x.open>0&&setQ(COINS[i],+x.close,(+x.close-+x.open)/+x.open*100,"HTX"))n++});if(!n)throw new Error("空数据");return n}},
+ {name:"CoinGecko",fn:async()=>cgParse(await ft(CG_URL,8000),"CoinGecko")}
+];
+/* 中转兜底（仅直连全失败或缺币时）：公开中转拉 CoinGecko */
+const RELAYS=[
+ {name:"AllOrigins",url:u=>"https://api.allorigins.win/raw?url="+encodeURIComponent(u)},
+ {name:"Codetabs",url:u=>"https://api.codetabs.com/v1/proxy?quest="+u},
+ {name:"Codetabs·编码",url:u=>"https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(u)},
+ {name:"AllOrigins·get",url:u=>"https://api.allorigins.win/get?url="+encodeURIComponent(u),wrap:j=>{if(j&&typeof j.contents==="string"){try{return JSON.parse(j.contents)}catch(e){throw new Error("中转包装解析失败")}}throw new Error("中转返回格式异常")}}
+];
+/* 一轮：直连七家并行竞速 → 仍缺币才走中转补齐；轮询永不停 */
+async function priceRound(){if(roundBusy)return;roundBusy=true;const t0=performance.now();
+  const missing=()=>COINS.filter(c=>!(tkAt[c]>=t0));
+  try{
+    await Promise.allSettled(DIRECT.map(s=>s.fn()));
+    if(missing().length){
+      await Promise.allSettled(RELAYS.map(async r=>{let j=await ft(r.url(CG_URL),10000);if(r.wrap)j=r.wrap(j);cgParse(j,"中转·"+r.name)}));
+    }
+  }catch(e){}
+  roundBusy=false;roundDone=true;
+  if(!everOk)failed=true;else if(COINS.some(c=>tkAt[c]>=t0))failed=false;
+  draw()}
+/* 迷你 K 线：CoinGecko market_chart 当日价格，直连优先、失败走 AllOrigins 中转（约 5 分钟一点，下采样到约 48 点画线）；拉不到时 draw() 用实时价历史兜底，不留空白 */
+async function sparks(){await Promise.all(COINS.map(async c=>{if(sp[c]&&sp[c].length>1)return;
+  const url="https://api.coingecko.com/api/v3/coins/"+CG_IDS[c]+"/market_chart?vs_currency=usd&days=1";
+  const apply=j=>{if(j&&Array.isArray(j.prices)&&j.prices.length>1){const all=j.prices.map(x=>+x[1]).filter(v=>v>0),step=Math.max(1,Math.floor(all.length/48)),pts=[];for(let i=0;i<all.length;i+=step)pts.push(all[i]);if(all.length&&pts[pts.length-1]!==all[all.length-1])pts.push(all[all.length-1]);sp[c]=pts;if(tk[c])sp[c][sp[c].length-1]=tk[c].p;return true}return false};
+  try{if(apply(await ft(url,9000)))return}catch(e){}
+  try{apply(await ft("https://api.allorigins.win/raw?url="+encodeURIComponent(url),10000))}catch(e){}}))}
+/* 币安 WebSocket 直播：WebSocket 不受 CORS 限制，连上后逐秒推价（仍过 setQ 同一套校验）；断线自动重连，连不上不影响 REST 轮询兜底 */
+(function wsLive(){const streams=COINS.map(c=>c.toLowerCase()+"usdt@miniTicker").join("/");let ws=null;
+  function conn(){try{ws=new WebSocket("wss://data-stream.binance.vision/ws/"+streams)}catch(e){setTimeout(conn,5000);return}
+    ws.onmessage=ev=>{try{const j=JSON.parse(ev.data),d=j&&j.data?j.data:j,arr=Array.isArray(d)?d:[d];let hit=false;
+      arr.forEach(x=>{if(!x||!x.s)return;const c=x.s.replace(/USDT$/,""),p=+x.c,o=+x.o;if(COINS.includes(c)&&p>0&&o>0&&setQ(c,p,(p-o)/o*100,"币安直播"))hit=true});
+      if(hit)draw()}catch(e){}};
+    ws.onclose=()=>setTimeout(conn,4000);
+    ws.onerror=()=>{try{ws.close()}catch(e){}}}
+  conn()})();
+/* 启动：立即跑第一轮 → 迷你线 */
+priceRound().catch(()=>{});sparks().catch(()=>{});
+/* 每 5 秒一轮直连竞速；失败不停止，5 秒后自动重试 */
+setInterval(()=>{priceRound().catch(()=>{})},5000);
+/* 迷你线缺失时每 30 秒补拉一次 */
+setInterval(()=>{if(!COINS.every(c=>sp[c]&&sp[c].length>1))sparks().catch(()=>{})},30000);
+/* 重试按钮：立刻再跑一轮并补拉迷你线 */
+$("retry").onclick=()=>{priceRound().catch(()=>{});sparks().catch(()=>{})};
+/* 状态点：每秒刷新；显示实际来源与「X秒前更新」，超过 30 秒没成功标「数据延迟」 */
+setInterval(()=>{const n=performance.now(),age=lastMsg?n-lastMsg:999999;
+  const lv=$("live"),ageS=Math.max(0,Math.round(age/1000));
+  if(everOk&&age<=30000){lv.className="live on";lv.textContent=T().liveWord+" · "+mapSrc(srcName||"直连")+" · "+ageS+T().secAgo}
+  else if(everOk){lv.className="live bad";lv.textContent=T().delayed+" · "+ageS+T().secAgo}
+  else if(failed){lv.className="live bad";lv.textContent=T().failRetry}
+  else{lv.className="live";lv.textContent=T().connecting}
+  $("downbar").classList.toggle("on",(roundDone&&!everOk)||(everOk&&age>30000));
+  draw()},1000);
+</script>
+</body>
+</html>
