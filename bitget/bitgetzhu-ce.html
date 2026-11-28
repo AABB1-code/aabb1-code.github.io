@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="theme-color" content="#eef2f9">
+<meta name="description" content="VIP专属 · Bitget注册入口（界面预览）。">
+<link rel="icon" href="data:,">
+<title>VIP专属 · Bitget注册</title>
+<style>
+:root{--tx:#12242c;--t2:rgba(38,54,62,.64);--t3:rgba(38,54,62,.42);--ink:#0a2e3f;--ink2:#0e3a4f;--gold:#12b5cb;--gold-d:#0a8ea3;--gold-l:#7fe9f5;--up:#1b9a43;--dn:#d92a1f;--ac:#007aff;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{color:var(--tx);font-family:-apple-system,"SF Pro Display","SF Pro Text","PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;font-size:15px;line-height:1.68;letter-spacing:.012em;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:#eef2f9}
+a{color:inherit;text-decoration:none}
+.m{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.dn{color:var(--dn)}
+:focus-visible{outline:2.5px solid var(--ac);outline-offset:2px}
+/* 背景：近白 + 淡蓝/蜜桃/薄荷/淡紫光晕（与币安版、欧易版同一套） */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(165deg,#fcfdff 0%,#f1f5fc 48%,#e8eef8 100%)}
+.bg i{position:absolute;border-radius:50%;filter:blur(80px)}
+.bg .o1{width:52vmax;height:52vmax;left:-18vmax;top:-18vmax;background:rgba(140,185,255,.5)}
+.bg .o2{width:38vmax;height:38vmax;right:-12vmax;top:8vmax;background:rgba(255,196,165,.55)}
+.bg .o3{width:40vmax;height:40vmax;left:22vw;bottom:-22vmax;background:rgba(168,240,212,.5)}
+.bg .o4{width:30vmax;height:30vmax;right:18vw;top:52vh;background:rgba(205,190,255,.42)}
+.bg .glow{position:absolute;right:-20vmax;top:-24vmax;width:80vmax;height:80vmax;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,1),rgba(240,253,255,.65) 36%,transparent 70%);filter:blur(24px)}
+/* 玻璃基础 */
+.glass{position:relative;background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,255,255,.34));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35),0 0 0 1px rgba(90,110,150,.08),0 24px 60px -20px rgba(60,80,130,.28),0 4px 16px rgba(60,80,130,.07)}
+.glass:before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.2px;pointer-events:none;background:linear-gradient(135deg,#fff,rgba(255,255,255,.1) 34%,rgba(255,255,255,.06) 66%,rgba(255,255,255,.85));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.glass>*{position:relative;z-index:1}
+/* 顶栏 */
+header{position:sticky;top:max(10px,env(safe-area-inset-top,0px));z-index:30;max-width:1120px;margin:10px auto 0;padding:0 16px}
+.bar{border-radius:999px;padding:8px 10px 8px 16px;display:flex;align-items:center;gap:6px;min-height:56px}
+.back-link{flex:none;font-size:13px;font-weight:600;color:var(--t2);padding:7px 10px;border-radius:999px;white-space:nowrap;margin-right:2px}
+.back-link:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+@media(max-width:640px){.back-link{font-size:12px;padding:6px 5px;margin-right:0}}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;margin-right:14px;white-space:nowrap;letter-spacing:-.02em}
+.brand img{height:26px;width:26px;border-radius:6px;display:block;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+nav.d{display:flex;align-items:center;gap:2px;flex:1}
+nav.d a,nav.d button{background:none;border:0;color:var(--t2);font:inherit;font-size:14px;font-weight:650;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px}
+nav.d a:hover,nav.d button:hover{background:rgba(255,255,255,.85);color:var(--tx)}
+nav.d a.on{color:var(--tx);background:#fff;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+.more{position:relative}
+.menu{position:absolute;top:calc(100% + 10px);left:0;min-width:190px;border-radius:22px;padding:8px;display:none}
+.more.open .menu{display:block}
+.menu a{display:block;padding:10px 12px;border-radius:14px;font-size:14px;color:var(--tx)}.menu a:hover{background:rgba(255,255,255,.9)}
+.burger{display:none;margin-left:auto;background:rgba(255,255,255,.8);border:0;color:var(--tx);border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer;box-shadow:0 2px 10px rgba(60,80,130,.14)}
+@media(max-width:860px){nav.d{display:none}.burger{display:block}}
+.drawer{position:fixed;inset:0;z-index:40;background:rgba(30,40,70,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none}
+.drawer.open{display:block}
+.drawer>div{position:absolute;right:10px;top:10px;bottom:10px;width:min(320px,86%);border-radius:30px;padding:22px;overflow:auto}
+.drawer h3{font-size:12px;color:var(--t2);letter-spacing:.08em;margin:8px 0}
+.drawer small{color:var(--t2);display:block;margin-bottom:12px}
+.drawer a{display:block;padding:12px;border-radius:14px;font-weight:650}.drawer a:hover{background:rgba(255,255,255,.9)}
+/* 主体 */
+main{max-width:1120px;margin:0 auto;padding:26px 16px 28px}
+.eb{font-size:12.5px;color:#23404d;letter-spacing:.14em;font-weight:700}
+h1{font-size:clamp(36px,5vw,54px);letter-spacing:-.02em;margin:6px 0 20px;line-height:1.12;font-weight:700}
+.lab{font-size:13px;color:var(--t2);font-weight:700;margin:22px 0 10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 26px;font:inherit;font-weight:700;font-size:15px;color:#eafcff;background:linear-gradient(180deg,rgba(14,58,79,.94),rgba(6,32,46,.96));-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);cursor:pointer;box-shadow:0 12px 26px -8px rgba(10,40,55,.42),0 0 0 1px rgba(18,181,203,.42),0 0 16px rgba(18,181,203,.12),inset 0 1.5px 0 rgba(255,255,255,.30),inset 0 0 0 1px rgba(255,255,255,.05);transition:transform .15s,filter .15s;min-height:44px}
+.btn:hover{filter:brightness(1.16);transform:translateY(-1px)}.btn:active{transform:scale(.98)}
+.btn.g{background:rgba(255,255,255,.78);color:var(--tx);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(10,142,163,.30),0 4px 14px rgba(60,80,130,.1)}
+.btn.g:hover{background:#fff;filter:none}
+.btn.s{padding:9px 18px;font-size:13.5px;min-height:38px}
+/* 邀请条 */
+.invite{background:rgba(255,255,255,.62);border-radius:20px;padding:19px 22px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.08)}
+.invite-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;flex:none;min-width:0}
+.invite-left>.btn{flex-shrink:0}
+.invite-div{flex:none;align-self:stretch;width:1px;background:linear-gradient(180deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+.invite-lines{color:var(--t2);font-size:14px;text-align:left;line-height:1.5;flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:7px}
+.invite-head{font-size:17px;font-weight:700;color:var(--tx);letter-spacing:0}
+.invite-head b{font-family:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;font-size:1.18em;font-weight:700;letter-spacing:.03em;margin:0 .3em;line-height:1.3;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1;background:linear-gradient(115deg,rgba(255,255,255,.30) 0%,rgba(255,255,255,.06) 34%,rgba(255,255,255,0) 52%),linear-gradient(180deg,rgba(10,34,44,.94) 0%,rgba(14,50,64,.94) 52%,rgba(8,96,112,.94) 84%,rgba(10,158,184,.94) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.perk{display:flex;align-items:center;gap:9px;min-width:0}
+.perk-dot{flex:none;width:19px;height:19px;border-radius:50%;background:linear-gradient(180deg,rgba(14,58,79,.95),rgba(7,35,48,.97));color:#eafcff;font-size:11.5px;font-weight:900;line-height:1;display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 0 0 1px rgba(18,181,203,.5),0 2px 6px rgba(10,40,55,.28)}
+.perk .hl{font-family:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;font-size:1.3em;font-weight:700;letter-spacing:.03em;line-height:1.3;white-space:nowrap;vertical-align:baseline;margin:0 .3em;font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1;background:linear-gradient(180deg,#0b3d55 0%,#0a6d80 38%,#0a9eb8 72%,#1cc8de 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.perk-laurel{width:11px;height:22px;display:inline-block;vertical-align:-5px;margin:0 2px;flex:none}
+.perk-laurel.flip{transform:scaleX(-1)}
+@media(max-width:560px){
+  .invite{padding:16px;gap:12px;flex-direction:column;align-items:stretch}
+  .invite-left{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+  .invite-div{width:auto;height:1px;align-self:auto;background:linear-gradient(90deg,transparent,rgba(90,110,150,.22) 22%,rgba(90,110,150,.22) 78%,transparent)}
+  .invite-lines{font-size:13px;line-height:1.55;gap:8px;width:100%}
+  .invite-head{font-size:15.5px}
+  .invite-head b{font-size:1.18em}
+  .perk{align-items:flex-start;gap:8px;line-height:1.55}
+  .perk-dot{flex:0 0 18px;width:18px;height:18px;font-size:10.5px;margin-top:1px}
+  .perk>span:last-child{flex:1 1 auto;min-width:0;line-height:1.55}
+  .perk .hl{font-size:1.18em;line-height:inherit;vertical-align:baseline;letter-spacing:0}
+  .invite-left>.btn{padding:9px 15px}
+  .invite+.lab{margin-top:30px}
+}
+/* 热门币种（注册区下方通栏横排） */
+.hot{margin-top:20px;border-radius:34px;padding:26px 28px}
+@media(max-width:560px){.hot{padding:20px}}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px;flex-wrap:wrap}
+.hd h2{font-size:20px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em;flex-wrap:wrap}
+.hd>a{color:#0062cc;font-size:14px;font-weight:650;padding-top:4px;min-height:32px;display:inline-block}
+.hstat{font-size:12px;color:var(--t3);font-weight:600;margin-right:auto;padding-top:7px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}.coin .meta{font-size:10.5px}.meta-pre{display:none}}
+.coin{border-radius:20px;padding:14px 16px;transition:transform .2s,box-shadow .2s;min-width:0;display:flex;flex-direction:column}
+.coin:hover{transform:translateY(-2px)}
+.coin .t{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;gap:8px;white-space:nowrap}
+.coin .t b{font-size:15px}
+.coin .t span{font-size:12px;font-weight:700;margin-left:auto}
+.coin .p{font-size:16px;font-weight:700;margin:6px 0 4px;letter-spacing:-.02em;border-radius:8px;padding:0 4px;margin-left:-4px;white-space:nowrap}
+.coin .meta{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap;overflow:hidden;margin-bottom:8px}
+.coin svg{width:100%;height:30px;display:block;margin-top:auto}
+/* 特色文案条（热门币种与荣誉卡片之间） */
+.feature-strip{margin-top:20px;border-radius:28px;padding:18px 24px;display:flex;flex-direction:column;gap:9px;color:var(--t2);font-size:14.5px;line-height:1.6}
+.feature-strip .perk{align-items:flex-start}
+.feat-ico{flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(150deg,#0e5a6e 0%,#0a9eb8 52%,#1cc8de 100%);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(6,32,46,.28),0 0 0 1px rgba(18,181,203,.45),0 0 10px rgba(18,181,203,.35),0 3px 8px rgba(10,40,55,.22)}
+.feat-ico svg{display:block}
+@media(max-width:560px){.feature-strip{padding:16px 18px;font-size:13.5px}}
+/* 信任 + 储备金证明 */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+@media(max-width:760px){.badges{grid-template-columns:1fr}}
+.badge{border-radius:28px;padding:20px;display:flex;gap:14px;align-items:center;font-size:14px;color:var(--t2);line-height:1.6}
+.safu{margin-top:20px;border-radius:34px;padding:32px}
+.safu h2{font-size:25px;margin-bottom:8px;letter-spacing:-.02em}
+.safu p{color:var(--t2);max-width:640px}
+.safu .st{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+@media(max-width:700px){.safu .st{grid-template-columns:1fr}}
+.safu .st div{background:rgba(255,255,255,.6);border-radius:18px;padding:16px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.07)}
+.safu .st b{display:block;font-size:24px;color:#12242c}.safu .st span{font-size:12.5px;color:var(--t2)}
+.safu .src{margin-top:16px;font-size:12.5px;word-break:break-all}
+.safu .src a{color:#0062cc;font-weight:650}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid #fff;box-shadow:0 16px 40px rgba(40,70,130,.22);color:var(--tx);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:650;transition:all .3s;z-index:60;max-width:calc(100% - 40px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+/* 白玻璃贵气面板：强模糊 + 青蓝微光 + 极淡细线 + 青蓝细边（Bitget 品牌青蓝主色） */
+.royal{border-radius:34px;padding:38px 36px;color:var(--tx);background:radial-gradient(120% 90% at 85% 0%,rgba(18,181,203,.13),transparent 55%),radial-gradient(90% 70% at 8% 100%,rgba(10,46,63,.05),transparent 60%),repeating-linear-gradient(180deg,rgba(20,50,60,.03) 0,rgba(20,50,60,.03) 1px,transparent 1px,transparent 24px),linear-gradient(160deg,rgba(255,255,255,.84),rgba(255,255,255,.54));-webkit-backdrop-filter:blur(28px) saturate(180%);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(10,142,163,.48);box-shadow:0 24px 60px -20px rgba(60,80,130,.26),0 4px 16px rgba(60,80,130,.07),0 0 46px rgba(18,181,203,.13),inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(18,181,203,.16)}
+@media(max-width:900px){.royal{padding:28px 24px}}
+.royal .eb{color:#23404d;letter-spacing:.34em}
+.royal h1{color:#12242c}
+/* 排名徽章：标题正上方，深海玻璃底 + 青蓝细边与光晕，跟随标题左对齐 */
+.rank-badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:linear-gradient(180deg,rgba(14,58,79,.93),rgba(6,30,43,.95));-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);color:#eafcff;border:1px solid rgba(18,181,203,.6);border-radius:999px;padding:7px 16px;font-size:15px;font-weight:700;letter-spacing:.12em;line-height:1.3;box-shadow:0 10px 22px -8px rgba(10,40,55,.4),0 0 18px rgba(18,181,203,.24),inset 0 1.5px 0 rgba(255,255,255,.3);white-space:nowrap;max-width:100%}
+.rank-badge:before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:linear-gradient(180deg,var(--gold-l),var(--gold));box-shadow:0 0 0 3px rgba(18,181,203,.25),0 0 8px rgba(18,181,203,.65)}
+html[lang="en"] .rank-badge{font-size:13.5px;letter-spacing:.06em}
+@media(max-width:560px){.rank-badge{font-size:13.5px;padding:6px 14px;letter-spacing:.06em}html[lang="en"] .rank-badge{font-size:12px;white-space:normal;text-align:left}}
+.ink-text{background:linear-gradient(168deg,#1d4b5e 0%,#0a2e3f 46%,#0b6e80 72%,#0a2e3f 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 数据行：大号数字 + 同行说明（基线对齐），右侧两个月桂徽章 */
+.rstats{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:24px}
+.rbig{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.rbig b{font-size:clamp(46px,6vw,66px);font-weight:800;letter-spacing:-.01em;line-height:1}
+.rbig span{color:#17333f;font-weight:700;font-size:clamp(17px,2.2vw,23px);line-height:1.3;letter-spacing:.03em;white-space:nowrap}
+.rno1s{display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap}
+.rno1{display:flex;align-items:center;gap:4px}
+.rno1-mid{text-align:center}
+.rno1-mid b{display:block;font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.05}
+.rno1-mid span{display:block;color:#23404d;font-size:13px;font-weight:650;letter-spacing:.2em;margin-top:5px}
+.laurel{flex:none}
+/* 邀请条（贵气面板内）：白玻璃 + 青蓝细边与淡青光晕 */
+.royal .invite{background:rgba(255,255,255,.55);border:1px solid rgba(10,142,163,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 26px rgba(18,181,203,.15),0 4px 14px rgba(60,80,130,.06)}
+.royal .invite-head{color:var(--tx)}
+.royal .invite-head b{color:transparent}
+.royal .invite-lines{color:var(--t2)}
+.royal .invite-div{background:linear-gradient(180deg,transparent,rgba(14,140,160,.55) 22%,rgba(14,140,160,.55) 78%,transparent)}
+.royal .lab{color:#23404d}
+.royal .btn.g{background:rgba(255,255,255,.75);color:var(--tx);box-shadow:inset 0 0 0 1px rgba(10,142,163,.5),inset 0 1px 0 rgba(255,255,255,.9),0 4px 14px rgba(60,80,130,.08)}
+.royal .btn.g:hover{background:#fff}
+.royal .invite .btn{background:linear-gradient(180deg,rgba(14,58,79,.94),rgba(6,32,46,.96));color:#eafcff;box-shadow:0 12px 26px -8px rgba(10,40,55,.42),0 0 0 1px rgba(18,181,203,.42),inset 0 1.5px 0 rgba(255,255,255,.3)}
+.royal .invite .btn:hover{background:linear-gradient(180deg,rgba(14,58,79,.94),rgba(6,32,46,.96));filter:brightness(1.16)}
+@media(max-width:560px){
+  .royal{padding:26px 20px}
+  .rstats{flex-direction:column;align-items:flex-start;gap:22px}
+  .rno1s{gap:20px}
+  .laurel{width:24px;height:48px}
+  .royal .invite-div{background:linear-gradient(90deg,transparent,rgba(14,140,160,.55) 22%,rgba(14,140,160,.55) 78%,transparent)}
+}
+/* 官方链接区布局：左侧链接/下载，右侧独立换补绑卡片 */
+.links-wrap{display:flex;gap:22px;align-items:stretch}
+.links-main{flex:1 1 auto;min-width:0}
+.links-main .lab:first-child{margin-top:22px}
+/* 换补绑卡片：青蓝细边 + 淡青光晕 + 玻璃通透，独立成块 */
+.rebind{flex:0 0 302px;max-width:340px;margin-top:22px;border:1.5px solid rgba(10,142,163,.72);border-radius:24px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(160deg,rgba(244,253,254,.92),rgba(255,255,255,.78) 62%,rgba(228,246,248,.88));-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);box-shadow:0 0 0 1px rgba(18,181,203,.16),0 0 34px rgba(18,181,203,.20),0 20px 40px -14px rgba(10,45,58,.28),inset 0 1px 0 rgba(255,255,255,.95)}
+.rebind-title{display:flex;align-items:center;gap:9px;font-size:20.5px;font-weight:800;letter-spacing:0;color:#12242c;line-height:1.3}
+.rebind-title .rebind-ico{flex:none;display:inline-flex;align-items:center;line-height:1;color:#12b5cb;filter:drop-shadow(0 0 5px rgba(18,181,203,.45))}
+.rebind-title .rebind-ico svg{display:block}
+.rebind p{color:var(--t2);font-size:14px;line-height:1.7;flex:1}
+.rebind p b{color:#12242c;font-weight:700;letter-spacing:.04em}
+.rebind p .rcode{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-weight:800;font-size:1.16em;color:#0a6d80;letter-spacing:.04em}
+.rebind-code{font-size:14px;font-weight:700;color:var(--tx);line-height:1.5}
+.rebind-code b{font-size:16.5px;font-weight:800;letter-spacing:.08em;color:#12242c}
+.rebind-contact{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.7;color:var(--t2)}
+.rebind-contact .m{color:#12242c;font-weight:700;letter-spacing:.02em}
+.rebind-contact a{color:#0a6d80;font-weight:700}
+.rebind-contact a:hover{text-decoration:underline}
+.rebind-btn{width:100%;font-size:16.5px;padding:14px 22px;margin-top:4px}
+@media(max-width:860px){
+  .links-wrap{flex-direction:column;gap:0}
+  .rebind{flex:none;max-width:none;width:100%;margin-top:20px}
+}
+@media(max-width:560px){
+  .links-main .lab:first-child{margin-top:30px}
+  .rebind{padding:20px}
+}
+html[lang="en"] .rebind-title{font-size:18.5px}
+html[lang="en"] .rebind p{font-size:13.5px}
+html[lang="en"] .rebind-code{font-size:13.5px}
+/* 语言切换（顶栏右侧，低调分段控件） */
+.lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.55);border-radius:999px;padding:3px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(90,110,150,.1);flex:none;margin-left:2px}
+.lang-switch button{background:none;border:0;font:inherit;font-size:12.5px;font-weight:650;color:var(--t2);padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:36px;line-height:1.2}
+.lang-switch button:hover{color:var(--tx)}
+.lang-switch button.on{background:#fff;color:var(--tx);box-shadow:0 2px 8px rgba(60,80,130,.16)}
+@media(max-width:640px){header{padding:0 10px}.bar{padding:8px 8px 8px 10px;gap:3px}.back-link{padding:6px 4px}.brand{font-size:15px;margin-right:2px;gap:6px}.brand img{height:22px;width:22px}html[lang="en"] .brand{font-size:12.5px;margin-right:2px}.lang-switch{margin-left:0;padding:2px}.lang-switch button{padding:5px 6px;font-size:12px;min-height:32px}.burger{width:36px;height:36px;font-size:16px;flex:none}}
+/* 英文文案较长时整体收紧，避免溢出/截断 */
+html[lang="en"] h1{font-size:clamp(32px,5vw,50px)}
+html[lang="en"] .brand{font-size:15.5px;margin-right:8px}
+html[lang="en"] nav.d a,html[lang="en"] nav.d button{font-size:13px;padding:8px 9px}
+html[lang="en"] .invite-head{font-size:15.5px;letter-spacing:0}
+html[lang="en"] .invite-lines{font-size:13.5px}
+html[lang="en"] .perk .hl,html[lang="en"] .invite-head b{font-size:1.15em}
+html[lang="en"] .rbig span{white-space:normal}
+html[lang="en"] .rno1-mid span{letter-spacing:.05em}
+html[lang="en"] .btn{padding-left:20px;padding-right:20px;font-size:14px}
+html[lang="en"] .badge{font-size:13px}
+html[lang="en"] .safu .st b{font-size:21px}
+html[lang="en"] .safu h2{font-size:23px}
+@media(max-width:560px){html[lang="en"] .invite-head{font-size:14px}html[lang="en"] .invite-lines{font-size:12.5px}html[lang="en"] .btn{padding-left:16px;padding-right:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i><div class="glow"></div></div>
+<header><div class="bar glass">
+  <a class="back-link" id="backLink" href="https://AABB1-code.github.io/">← 返回选择</a>
+  <a class="brand" href="#"><img id="mark" src="data:image/png;base64,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" alt="Bitget" height="26"><span id="brand">VIP专属</span></a>
+  <nav class="d" id="nav" aria-label="站内导航"></nav>
+  <div class="lang-switch" role="group" aria-label="Language / 語言"><button type="button" data-setlang="zh-CN" aria-label="简体中文">简体</button><button type="button" data-setlang="zh-TW" aria-label="繁體中文">繁體</button><button type="button" data-setlang="en" aria-label="English">EN</button></div><button class="burger" id="burger" aria-label="打开导航">☰</button>
+</div></header>
+<div class="drawer" id="drawer"><div class="glass"><h3>NAVIGATION</h3><small id="drawerSub">站内导航</small><div id="dnav"></div></div></div>
+
+<main id="reg">
+  <section class="reg royal">
+    <div>
+      <div class="eb">BITGET REGISTER</div>
+      <div><span class="rank-badge" id="rankBadge">全能交易所</span></div>
+      <h1><span class="ink-text" id="h1a">Bitget</span><span class="ink-text" id="h1b">注册</span></h1>
+      <div class="rstats" id="rstats"></div>
+      <div class="invite">
+        <div class="invite-left">
+          <div class="invite-head" id="inviteHead">使用邀请码<b id="code">——</b>注册</div>
+          <button class="btn g s" id="copy" type="button">复制</button>
+        </div>
+        <div class="invite-div" aria-hidden="true"></div>
+        <div class="invite-lines">
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk1"></span></div>
+          <div class="perk"><span class="perk-dot" aria-hidden="true">✓</span><span id="perk2"></span></div>
+        </div>
+      </div>
+      <div class="links-wrap">
+        <div class="links-main">
+          <div class="lab" id="labLinks">官方链接</div>
+          <div class="row"><a class="btn" data-l="register" href="#">注册链接</a></div>
+          <div class="lab" id="labDl">安装下载</div>
+          <div class="row"><a class="btn g" data-l="download" href="#">安卓下载</a><a class="btn g" data-l="gplay" href="#">IOS下载</a></div>
+        </div>
+        <aside class="rebind" aria-label="补绑">
+          <div class="rebind-title"><span class="rebind-ico" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span id="rebindTitle">补绑</span></div>
+          <p id="rebindDesc">将你的UID以私信方式发送我，完成补绑</p>
+          <div class="rebind-contact">
+            <div><span id="rebindWechat">微信：</span><span class="m">Fed_Btc</span></div>
+            <div><span id="rebindX">X：</span><a class="m" href="https://x.com/BTC200708" target="_blank" rel="noopener">@BTC200708</a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="hot glass">
+    <div class="hd"><h2><span id="hotTitle">热门币种</span></h2><span class="hstat m" id="hstat"></span><a data-l="markets" href="#">查看全部</a></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="badges" id="badges"></section>
+
+  <section class="feature-strip glass" id="featureStrip" aria-label="平台特色">
+    <div class="perk"><span class="feat-ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="#eafcff"><path d="M12 1.5l2.55 7.95L22.5 12l-7.95 2.55L12 22.5l-2.55-7.95L1.5 12l7.95-2.55z"/></svg></span><span id="feat1"></span></div>
+    <div class="perk"><span class="feat-ico" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="#eafcff"><path d="M12 1.5l2.55 7.95L22.5 12l-7.95 2.55L12 22.5l-2.55-7.95L1.5 12l7.95-2.55z"/></svg></span><span id="feat2"></span></div>
+  </section>
+  <section class="safu glass" id="safu"></section>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= 只改这一段 =================
+   邀请码 AABB1 为占位（未经确认是否为本人的 Bitget 邀请码），注册链接待配置；
+   下载只用官方：官网下载页 bitget.com/download + Google Play 官方应用页。
+   Bitget 邀请码一般在注册第一屏填写、事后无法补绑，故本页不设换补绑卡。 */
+const CONFIG={
+  siteName:"VIP专属",
+  inviteCode:"AABB1",               // 占位邀请码（待确认）
+  links:{register:"https://partner.bitget.ninja/bg/fq7dtdpu",download:"https://www.bitget.com/zh-CN/download",gplay:"https://apps.apple.com/app/id1442778704",markets:""}
+};
+/* ================= 三语字典（简体为基准） ================= */
+const LAUREL_L='<svg class="perk-laurel" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#0a2e3f" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-122 20 8)"/></svg>';
+const LAUREL_R='<svg class="perk-laurel flip" viewBox="0 0 36 72" aria-hidden="true"><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#0a2e3f" stroke-width="2" stroke-linecap="round"/><ellipse cx="25" cy="63" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-28 25 63)"/><ellipse cx="17" cy="53" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-48 17 53)"/><ellipse cx="12" cy="41" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-68 12 41)"/><ellipse cx="11" cy="29" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-86 11 29)"/><ellipse cx="14" cy="17" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-104 14 17)"/><ellipse cx="20" cy="8" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(-122 20 8)"/></svg>';
+const I18N={
+"zh-CN":{site:"VIP专属",docTitle:"VIP专属 · Bitget注册",desc:"VIP专属 · Bitget注册入口（界面预览）。",h1a:"Bitget",h1b:"注册",rankBadge:"全能交易所",
+ stats:[["1.25亿+","活跃的实名用户"],["No.1","全球最大跟单平台"],["131%","总储备金率"]],
+ nav:[["NEWS",""],["Bitget周边",""],["Bitget人生",""],["Bitget资产",""],["Bitget教程",""],["Bitget注册","#reg"]],
+ more:[["Agent Hub",""],["BGB",""],["跟单交易",""],["保护基金",""],["储备金证明",""],["文章",""]],
+ badges:["2018 年成立的全能交易所（Universal Exchange），全球最大的加密货币跟单交易平台","每月发布储备金证明，总储备金率 131%，默克尔树可自查","Bitget 用户保护基金（2022 年设立），承诺 3 亿美元以上"],
+ reserveTitle:"资产受储备金证明保障",
+ reserveText:"Bitget 自 2022 年 12 月起每月发布储备金证明。第 47 期（2026 年 9 月 29 日 17:00 UTC+8 快照，覆盖 19 个资产）总储备金率 131%，其中 BTC 142%、ETH 110%、USDT 107%、USDC 154%。用户可通过默克尔树（Merkle Tree）自行验证自身资产是否完好无损。",
+ reserveStats:[["131%","总储备金率（第 47 期）"],["142%","BTC 储备金率"],["154%","USDC 储备金率"]],
+ reserveLinePre:"储备金证明报告：",reserveLinePost:"（每月发布新一期）",
+ invitePre:"使用邀请码",invitePost:"注册",copy:"复制",copied:"已复制邀请码：",soon:"该页面即将上线",noLink:"该链接还没有配置",noCode:"邀请码还没有配置",
+ perk1:'1、享有最高<b class="hl">永久60%</b>返佣和手续费优惠',perk2:'2、新用户完成注册任务，即可获得<b class="hl">$3,500</b>真实股票代币',
+ feat1:'1、全球最大的加密货币跟单交易平台，一键跟单，轻松跟随专业交易员',feat2:'2、现货、合约、跟单、交易机器人、理财、Bitget Onchain、代币化美股，一站式交易',
+ labLinks:"官方链接",labDl:"安装下载",linkReg:"注册链接",linkDownload:"安卓下载",linkGplay:"IOS下载",
+ rebindTitle:"补绑",rebindDesc:"将你的UID以私信方式发送我，完成补绑",rebindWechat:"微信：",rebindX:"X：",
+ hot:"热门币种",viewAll:"查看全部",hotLive:s=>"实时 · "+s+" · 刚刚更新",hotAgo:(s,n)=>"实时 · "+s+" · "+n+"秒前更新",hotStale:"数据延迟",hotLoading:"行情加载中…",metaH:"24h 高",metaL:"低",
+ drawerSub:"站内导航",drawerSite:"站点",drawerMore:"更多",burger:"打开导航",back:"← 返回选择"},
+"zh-TW":{site:"VIP專屬",docTitle:"VIP專屬 · Bitget註冊",desc:"VIP專屬 · Bitget註冊入口（介面預覽）。",h1a:"Bitget",h1b:"註冊",rankBadge:"全能交易所",
+ stats:[["1.25億+","活躍的實名用戶"],["No.1","全球最大跟單平台"],["131%","總儲備金率"]],
+ nav:[["NEWS",""],["Bitget周邊",""],["Bitget人生",""],["Bitget資產",""],["Bitget教程",""],["Bitget註冊","#reg"]],
+ more:[["Agent Hub",""],["BGB",""],["跟單交易",""],["保護基金",""],["儲備金證明",""],["文章",""]],
+ badges:["2018 年成立的全能交易所（Universal Exchange），全球最大的加密貨幣跟單交易平台","每月發布儲備金證明，總儲備金率 131%，默克爾樹可自查","Bitget 用戶保護基金（2022 年設立），承諾 3 億美元以上"],
+ reserveTitle:"資產受儲備金證明保障",
+ reserveText:"Bitget 自 2022 年 12 月起每月發布儲備金證明。第 47 期（2026 年 9 月 29 日 17:00 UTC+8 快照，覆蓋 19 個資產）總儲備金率 131%，其中 BTC 142%、ETH 110%、USDT 107%、USDC 154%。用戶可透過默克爾樹（Merkle Tree）自行驗證自身資產是否完好無損。",
+ reserveStats:[["131%","總儲備金率（第 47 期）"],["142%","BTC 儲備金率"],["154%","USDC 儲備金率"]],
+ reserveLinePre:"儲備金證明報告：",reserveLinePost:"（每月發布新一期）",
+ invitePre:"使用邀請碼",invitePost:"註冊",copy:"複製",copied:"已複製邀請碼：",soon:"該頁面即將上線",noLink:"該連結還沒有配置",noCode:"邀請碼還沒有配置",
+ perk1:'1、享有最高<b class="hl">永久60%</b>返傭和手續費優惠',perk2:'2、新用戶完成註冊任務，即可獲得<b class="hl">$3,500</b>真實股票代幣',
+ feat1:'1、全球最大的加密貨幣跟單交易平台，一鍵跟單，輕鬆跟隨專業交易員',feat2:'2、現貨、合約、跟單、交易機器人、理財、Bitget Onchain、代幣化美股，一站式交易',
+ labLinks:"官方連結",labDl:"安裝下載",linkReg:"註冊連結",linkDownload:"安卓下載",linkGplay:"IOS下載",
+ rebindTitle:"補綁",rebindDesc:"將你的UID以私訊方式發送我，完成補綁",rebindWechat:"微信：",rebindX:"X：",
+ hot:"熱門幣種",viewAll:"查看全部",hotLive:s=>"即時 · "+s+" · 剛剛更新",hotAgo:(s,n)=>"即時 · "+s+" · "+n+"秒前更新",hotStale:"資料延遲",hotLoading:"行情載入中…",metaH:"24h 高",metaL:"低",
+ drawerSub:"站內導航",drawerSite:"站點",drawerMore:"更多",burger:"打開導航",back:"← 返回選擇"},
+"en":{site:"VIP Exclusive",docTitle:"VIP Exclusive · Bitget Sign-Up",desc:"VIP Exclusive · Bitget sign-up portal (interface preview).",h1a:"Bitget",h1b:" Sign-Up",rankBadge:"Universal Exchange",
+ stats:[["125M+","Active Verified Users"],["No.1","Largest Copy Trading Platform"],["131%","Total Reserve Ratio"]],
+ nav:[["NEWS",""],["Bitget Merch",""],["Bitget Life",""],["Bitget Assets",""],["Bitget Tutorials",""],["Bitget Sign-Up","#reg"]],
+ more:[["Agent Hub",""],["BGB",""],["Copy Trading",""],["Protection Fund",""],["Proof of Reserves",""],["Articles",""]],
+ badges:["A Universal Exchange founded in 2018 — the world's largest crypto copy trading platform","Proof of Reserves published monthly — 131% total reserve ratio, verifiable via Merkle Tree","Bitget Protection Fund (est. 2022) — a commitment of over $300 million"],
+ reserveTitle:"Assets Backed by Proof of Reserves",
+ reserveText:"Bitget has published Proof of Reserves every month since December 2022. The 47th report (snapshot: Sep 29, 2026, 17:00 UTC+8, covering 19 assets) shows a total reserve ratio of 131% — BTC 142%, ETH 110%, USDT 107%, USDC 154%. You can verify at any time via the Merkle Tree that your assets are fully intact.",
+ reserveStats:[["131%","Total reserve ratio (47th report)"],["142%","BTC reserve ratio"],["154%","USDC reserve ratio"]],
+ reserveLinePre:"Proof of Reserves: ",reserveLinePost:" — a new report every month",
+ invitePre:"Register with invite code ",invitePost:"",copy:"Copy",copied:"Invite code copied: ",soon:"This page is coming soon",noLink:"This link has not been configured yet",noCode:"The invite code has not been configured yet",
+ perk1:'1. Enjoy the highest <b class="hl">lifetime 60%</b> rebate and trading fee discounts',perk2:'2. New users who complete the sign-up tasks earn <b class="hl">$3,500</b> in real tokenized stocks',
+ feat1:"1. The world's largest crypto copy trading platform — copy trades in one click and follow professional traders with ease",feat2:'2. Spot, futures, copy trading, trading bots, Earn, Bitget Onchain and tokenized US stocks — all in one place',
+ labLinks:"Official Links",labDl:"Get the App",linkReg:"Sign-Up Link",linkDownload:"Android Download",linkGplay:"iOS Download",
+ rebindTitle:"Rebind",rebindDesc:"Send me your UID via DM to complete the rebind",rebindWechat:"WeChat: ",rebindX:"X: ",
+ hot:"Popular Coins",viewAll:"View All",hotLive:s=>"Live · "+s+" · just updated",hotAgo:(s,n)=>"Live · "+s+" · updated "+n+"s ago",hotStale:"Data delayed",hotLoading:"Loading prices…",metaH:"24h High",metaL:"Low",
+ drawerSub:"Site Navigation",drawerSite:"Site",drawerMore:"More",burger:"Open navigation",back:"← Back"}
+};
+let LANG="zh-CN";
+const T=()=>I18N[LANG];
+const $=id=>document.getElementById(id);
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2200)}
+$("code").textContent=CONFIG.inviteCode||"——";
+// 深色月桂枝（本地 SVG，与币安版、欧易版同一画法，换 Bitget 青蓝）
+function laurel(flip){const leaves=[[25,63,-28],[17,53,-48],[12,41,-68],[11,29,-86],[14,17,-104],[20,8,-122]];
+  return `<svg class="laurel" viewBox="0 0 36 72" width="30" height="60" aria-hidden="true"${flip?' style="transform:scaleX(-1)"':""}><path d="M27 69 C13 57 7 37 13 9" fill="none" stroke="#0a2e3f" stroke-width="2" stroke-linecap="round"/>${leaves.map(l=>`<ellipse cx="${l[0]}" cy="${l[1]}" rx="3.1" ry="7" fill="#3d97a5" transform="rotate(${l[2]} ${l[0]} ${l[1]})"/>`).join("")}</svg>`}
+// 数据行：第一个是大号数字 + 同行说明；其余是月桂徽章
+function renderStats(){const st=T().stats;$("rstats").innerHTML=(st.length?`<div class="rbig"><b class="ink-text">${st[0][0]}</b><span>${st[0][1]}</span></div>`:"")
+  +(st.length>1?`<div class="rno1s">${st.slice(1).map(s=>`<div class="rno1">${laurel(false)}<div class="rno1-mid"><b class="ink-text">${s[0]}</b><span>${s[1]}</span></div>${laurel(true)}</div>`).join("")}</div>`:"");
+  $("rstats").style.display=st.length?"":"none"}
+renderStats();
+// 导航（站点 + 更多）
+const nl=(a,cls="")=>`<a ${a[1]&&a[1][0]!=="#"?`href="${a[1]}" target="_blank" rel="noopener"`:`href="${a[1]||"#"}" ${a[1]?"":'data-soon="1"'}`} class="${cls}">${a[0]}</a>`;
+function renderNav(){const t=T();$("nav").innerHTML=t.nav.map(a=>nl(a,a[1]==="#reg"?"on":"")).join("")+`<div class="more" id="more"><button id="mb" aria-haspopup="true">${LANG==="en"?"More":"更多"} ▾</button><div class="menu glass">${t.more.map(a=>nl(a)).join("")}</div></div>`;
+$("dnav").innerHTML=`<h3>${t.drawerSite}</h3>`+t.nav.map(a=>nl(a)).join("")+`<h3>${t.drawerMore}</h3>`+t.more.map(a=>nl(a)).join("")}
+renderNav();
+document.addEventListener("click",e=>{const a=e.target.closest("[data-soon]");if(a){e.preventDefault();toast(T().soon)}
+  const mb=e.target.closest("#mb");$("more").classList.toggle("open",!!mb&&!$("more").classList.contains("open"));
+  if(e.target.closest("#burger"))$("drawer").classList.add("open");else if(!e.target.closest("#dnav")&&e.target.closest("#drawer")||e.target.closest("#dnav a"))$("drawer").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("more").classList.remove("open");$("drawer").classList.remove("open")}});
+// 官方链接（未配置时只弹提示、不跳转）
+document.querySelectorAll("[data-l]").forEach(a=>{const u=CONFIG.links[a.dataset.l];
+  if(!u){a.addEventListener("click",e=>{e.preventDefault();toast(T().noLink)});return}
+  a.href=u;a.target="_blank";a.rel="noopener"});
+$("copy").onclick=async()=>{const c=CONFIG.inviteCode;if(!c)return toast(T().noCode);try{await navigator.clipboard.writeText(c)}catch(e){const t=document.createElement("textarea");t.value=c;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}toast(T().copied+c)};
+// 荣誉 / 储备金证明
+const AWARD='<svg width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex:none"><circle cx="24" cy="19" r="11" stroke="#0a2e3f" stroke-width="2.4"/><path d="M24 12.5l1.9 3.9 4.3.6-3.1 3 0.7 4.3L24 22.3l-3.8 2-0.7-4.3-3.1-3 4.3-.6z" fill="#12b5cb"/><path d="M18.5 27.5L15 40l9-4.6L33 40l-3.5-12.5" stroke="#0a2e3f" stroke-width="2.4" stroke-linejoin="round"/></svg>';
+function renderBadges(){const bs=T().badges;$("badges").innerHTML=bs.map(b=>`<div class="badge glass">${AWARD}<span>${b}</span></div>`).join("");$("badges").style.display=bs.length?"":"none"}
+function renderReserve(){const t=T();$("safu").innerHTML=`<h2>${t.reserveTitle}</h2><p>${t.reserveText}</p><div class="st">${t.reserveStats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div><p class="m src">${t.reserveLinePre}<a href="https://www.bitget.com/zh-CN/promotion/proof-of-reserves" target="_blank" rel="noopener">www.bitget.com/zh-CN/promotion/proof-of-reserves</a>${t.reserveLinePost}</p>`}
+renderBadges();renderReserve();
+
+/* ---------- 热门币种：实时行情（Bitget 官方接口，逐币容错 + 超时重试，CoinGecko 兜底） ---------- */
+const SYMS=["BTC","ETH","BGB","SOL","XRP"];
+const CGID={BTC:"bitcoin",ETH:"ethereum",BGB:"bitget-token",SOL:"solana",XRP:"ripple"};
+const D={};let lastOk=0,srcName="",tickBusy=false;
+/* 带超时的 JSON 请求：网络半开/挂起时按时失败，交给下一轮重试或兜底，不再无限等待 */
+function fetchJSON(url,ms){const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),ms);
+  return fetch(url,{cache:"no-store",signal:ctl.signal}).then(r=>{if(!r.ok)throw new Error("http "+r.status);return r.json()}).then(j=>{clearTimeout(tm);return j},e=>{clearTimeout(tm);throw e})}
+function buildCards(){$("grid").innerHTML=SYMS.map(s=>`<div class="coin glass" id="coin-${s}"><div class="t"><b>${s}</b><span class="m chg">—</span></div><div class="p m">—</div><div class="meta"></div><svg viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"></svg></div>`).join("");renderCoins()}
+function fmtP(p){if(p==null||isNaN(p))return "—";if(p>=100)return "$"+p.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});if(p>=1)return "$"+p.toFixed(3);return "$"+p.toFixed(4)}
+function sparkSVG(closes){if(!closes||closes.length<2)return "";const mn=Math.min(...closes),mx=Math.max(...closes),rg=(mx-mn)||1;
+  const pts=closes.map((c,i)=>`${(i/(closes.length-1)*100).toFixed(1)},${(27-((c-mn)/rg)*24).toFixed(1)}`).join(" ");
+  const up=closes[closes.length-1]>=closes[0];
+  return `<polyline points="${pts}" fill="none" stroke="${up?"#1b9a43":"#d92a1f"}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>`}
+function renderCoins(){const t=T();SYMS.forEach(s=>{const el=document.getElementById("coin-"+s);if(!el)return;const d=D[s];if(!d)return;
+  if(d.p!=null&&d.chg!=null){const chg=el.querySelector(".chg");chg.textContent=(d.chg>=0?"+":"")+d.chg.toFixed(2)+"%";chg.className="m chg "+(d.chg>=0?"up":"dn");
+  el.querySelector(".p").textContent=fmtP(d.p);
+  el.querySelector(".meta").textContent=t.metaH+" "+fmtP(d.hi)+" · "+t.metaL+" "+fmtP(d.lo)}
+  if(d.spark)el.querySelector("svg").innerHTML=sparkSVG(d.spark)})}
+function renderStatus(){const el=$("hstat");if(!el)return;const t=T();
+  if(!lastOk){el.textContent=t.hotLoading;return}
+  const sec=Math.max(0,Math.round((Date.now()-lastOk)/1000));
+  el.textContent=sec>30?t.hotStale:(sec<2?t.hotLive(srcName):t.hotAgo(srcName,sec))}
+/* 逐币独立取价：单个币失败只跳过该币，不再拖垮整行；返回本轮成功个数 */
+async function fetchBitget(){const rs=await Promise.all(SYMS.map(s=>fetchJSON("https://api.bitget.com/api/v2/spot/market/tickers?symbol="+s+"USDT",3500).catch(()=>null)));
+  let ok=0;rs.forEach((j,i)=>{if(!j||j.code!=="00000"||!j.data||!j.data[0])return;const d=j.data[0],s=SYMS[i];
+    D[s]=Object.assign({},D[s],{p:parseFloat(d.lastPr),chg:parseFloat(d.change24h)*100,hi:parseFloat(d.high24h),lo:parseFloat(d.low24h)});ok++});
+  if(ok){srcName="Bitget";lastOk=Date.now();renderCoins();renderStatus()}
+  return ok}
+async function fetchSparks(){const rs=await Promise.all(SYMS.map(s=>fetchJSON("https://api.bitget.com/api/v2/spot/market/candles?symbol="+s+"USDT&granularity=15min&limit=96",6000).catch(()=>null)));
+  let any=false;rs.forEach((j,i)=>{if(j&&j.code==="00000"&&j.data&&j.data.length>1){const s=SYMS[i];D[s]=Object.assign({},D[s],{spark:j.data.map(c=>parseFloat(c[4]))});any=true}});
+  if(any)renderCoins()}
+/* fillOnly=true 时只补 Bitget 本轮没取到的币，不覆盖已取到的 Bitget 价格 */
+async function fetchCG(fillOnly){const ids=SYMS.map(s=>CGID[s]).join(",");
+  const j=await fetchJSON("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+ids+"&sparkline=true&price_change_percentage=24h",6000);
+  if(!Array.isArray(j))throw new Error("cg");let ok=0;
+  j.forEach(c=>{const s=SYMS.find(x=>CGID[x]===c.id);if(!s)return;if(fillOnly&&D[s]&&D[s].p!=null)return;const sp=c.sparkline_in_7d&&c.sparkline_in_7d.price?c.sparkline_in_7d.price.slice(-96):[];
+    D[s]={p:c.current_price,chg:c.price_change_percentage_24h||0,hi:c.high_24h,lo:c.low_24h,spark:sp};ok++});
+  if(!ok)throw new Error("cg");
+  if(!fillOnly)srcName="CoinGecko";lastOk=Date.now();renderCoins();renderStatus()}
+/* 防重入：上一轮还没结束时不叠加新请求；Bitget 缺哪个币就用兜底补哪个，全缺才整行切换兜底；失败后下一轮（5 秒）自动重试，直到取到价格 */
+async function tick(){if(tickBusy)return;tickBusy=true;
+  let ok=0;try{ok=await fetchBitget()}catch(e){ok=0}
+  if(ok<SYMS.length){try{await fetchCG(ok>0)}catch(e){if(!ok)renderStatus()}}
+  tickBusy=false}
+buildCards();tick();fetchSparks();
+setInterval(tick,5000);setInterval(fetchSparks,60000);setInterval(renderStatus,1000);
+/* ---------- 语言切换：原地切换全部文案，不刷新 ---------- */
+function applyLang(l){if(!I18N[l])l="zh-CN";LANG=l;
+  const t=T();document.documentElement.lang=l;document.title=t.docTitle;
+  const md=document.querySelector('meta[name="description"]');if(md)md.content=t.desc;
+  $("brand").textContent=t.site;
+  $("backLink").textContent=t.back;
+  $("h1a").textContent=t.h1a;$("h1b").textContent=t.h1b;
+  $("rankBadge").textContent=t.rankBadge;
+  $("inviteHead").innerHTML=t.invitePre+'<b id="code">'+(CONFIG.inviteCode||"——")+'</b>'+t.invitePost;
+  $("copy").textContent=t.copy;
+  $("perk1").innerHTML=t.perk1;$("perk2").innerHTML=t.perk2;
+  $("feat1").textContent=t.feat1;$("feat2").textContent=t.feat2;
+  $("labLinks").textContent=t.labLinks;$("labDl").textContent=t.labDl;
+  $("rebindTitle").textContent=t.rebindTitle;$("rebindDesc").textContent=t.rebindDesc;
+  $("rebindWechat").textContent=t.rebindWechat;$("rebindX").textContent=t.rebindX;
+  const lk={register:t.linkReg,download:t.linkDownload,gplay:t.linkGplay,markets:t.viewAll};
+  document.querySelectorAll("[data-l]").forEach(a=>{if(lk[a.dataset.l])a.textContent=lk[a.dataset.l]});
+  $("hotTitle").textContent=t.hot;
+  $("drawerSub").textContent=t.drawerSub;$("burger").setAttribute("aria-label",t.burger);
+  document.querySelectorAll("[data-setlang]").forEach(b=>{const on=b.dataset.setlang===l;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false")});
+  renderStats();renderNav();renderBadges();renderReserve();buildCards()}
+document.querySelectorAll("[data-setlang]").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.setlang)));
+applyLang(LANG);
+</script>
+</body>
+</html>
